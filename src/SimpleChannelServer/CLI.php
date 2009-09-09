@@ -117,7 +117,7 @@ class CLI
         }
         $scs = new Main($this->channel, $this->dir);
         $dirname = $this->dir . '/get/';
-        $dir = new DirectoryIterator($dirname);
+        $dir = new \DirectoryIterator($dirname);
         foreach ($dir as $file) {
             if (!$file->isDot()
                 && !$file->isDir()
