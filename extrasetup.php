@@ -7,5 +7,6 @@ $extrafiles = array(
     $pyrus,
     new \pear2\Pyrus\Package(__DIR__ . '/../../Pyrus_Developer/package.xml'),
     new \pear2\Pyrus\Package(__DIR__ . '/../../Exception/package.xml'),
+    new \pear2\Pyrus\Package(__DIR__ . '/../../MultiErrors/package.xml'),
 );
 ?>

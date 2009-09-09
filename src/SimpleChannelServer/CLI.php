@@ -118,13 +118,23 @@ class CLI
         $scs = new Main($this->channel, $this->dir);
         $dirname = $this->dir . '/get/';
         $dir = new \DirectoryIterator($dirname);
+        $errs = new \pear2\MultiErrors;
         foreach ($dir as $file) {
             if (!$file->isDot()
                 && !$file->isDir()
                 && substr($file->getFilename(), -3) != 'tar'
                 && substr($file->getFilename(), 0, 1) != '.') {
-                $scs->saveRelease(new \pear2\Pyrus\Package($dirname.$file->getFilename()), $maintainer);
+                try {
+                    $scs->saveRelease($dirname.$file->getFilename(), $maintainer);
+                    echo $file->getFilename().' successfully saved.'.PHP_EOL;
+                } catch(\Exception $e) {
+                    echo $file->getFilename().' '.$e->getMessage().PHP_EOL;
+                    $errs->E_ERROR[] = $e;
+                }
             }
+        }
+        if (count($errs->E_ERROR)) {
+            throw new Exception('Could not save some releases.',  0, $errs);
         }
     }
     
