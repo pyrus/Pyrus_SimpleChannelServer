@@ -46,7 +46,7 @@ class CLI
                     // yes, new maintainers that have not yet released anything.
                 break;
             case 'add-category':
-                Categories::create($category, $description);
+                $this->handleAddCategory();
                 break;
             case 'release':
                 $this->handleRelease();
@@ -57,13 +57,19 @@ class CLI
                 break;
         }
     }
-
-    function pyrusAddCategory($frontend, $args)
+    
+    function handleAddCategory()
     {
-        if (!isset($this->channel)) {
-            throw new Exception('Unknown channel, run the' .
-                                                          'scs-create command first');
+        if ($_SERVER['argc'] < 3) {
+            $this->printCategoryUsage();
+            return false;
         }
+
+        $args = array();
+        $args['category']    = $_SERVER['argv'][2];
+        $args['description'] = (isset($_SERVER['argv'][3]))?
+                                    $_SERVER['argv'][3]:$_SERVER['argv'][2];
+        
         Categories::create($args['category'], $args['description']);
         $category = new REST\Category($this->dir . '/rest', $this->channel->name);
         $category->saveAllCategories();
@@ -71,11 +77,34 @@ class CLI
         echo "Added category ", $args['category'], "\n";
     }
 
+    function pyrusAddCategory($frontend, $args)
+    {
+        if (!isset($this->channel)) {
+            throw new Exception('Unknown channel, run the ' .
+                                'scs-create command first');
+        }
+
+        Categories::create($args['category'], $args['description']);
+        $category = new REST\Category($this->dir . '/rest', $this->channel->name);
+        $category->saveAllCategories();
+        $category->savePackagesInfo($args['category']);
+        echo "Added category ", $args['category'], "\n";
+    }
+    
+    function printCategoryUsage()
+    {
+        echo 'Usage: pearscs add-category category [description]
+    This will add a category to the current channel.
+    
+    category    Name of the category.
+    description Description of the category.' . PHP_EOL;
+    }
+
     function pyrusAddMaintainer($frontend, $args)
     {
         if (!isset($this->channel)) {
-            throw new Exception('Unknown channel, run the' .
-                                                          'scs-create command first');
+            throw new Exception('Unknown channel, run the ' .
+                                'scs-create command first');
         }
         $maintainer = new REST\Maintainer($this->dir . '/rest', $this->channel->name);
         if (isset($args['uri'])) {
@@ -104,8 +133,8 @@ class CLI
     function pyrusUpdate($frontend, $args)
     {
         if (!isset($this->channel)) {
-            throw new Exception('Unknown channel, run the' .
-                                                          'scs-create command first');
+            throw new Exception('Unknown channel, run the ' .
+                                'scs-create command first');
         }
         if (null === $frontend) {
             $maintainer = $args;
@@ -204,8 +233,8 @@ Usage: pearscs release packagefile maintainer
         }
         $this->dir = dirname($args['file']);
         $this->channel = new Channel($args['name'],
-                                                               $args['summary'],
-                                                               $args['alias']);
+                                     $args['summary'],
+                                     $args['alias']);
         $scs = new Main($this->channel,
             $this->dir);
         $scs->saveChannel();
@@ -247,7 +276,7 @@ Usage: pearscs update|create|add-maintainer|add-category|release [option]
         update [channel.xml]                  Update the channel xml files.
         create pear.example.com summary [...] Create a new channel.
         add-maintainer handle                 Add a maintainer.
-        add-category category                 Add a category.
+        add-category category [description]   Add a category.
         release package.tgz maintainer        Release package.
 ';
     }
