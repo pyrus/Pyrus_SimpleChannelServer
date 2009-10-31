@@ -129,6 +129,9 @@ class Categories
      */
     static function linkPackageToCategory($package, $category, $strict = false)
     {
+        if (!isset(self::$_category)) {
+            self::$_category = new Categories;
+        }
         return self::$_category->link($package, $category, $strict);
     }
 

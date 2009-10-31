@@ -54,7 +54,7 @@ class Main
             $this->webpath = $webpath;
         }
         if (!$pyruspath) {
-        	$pyruspath = __DIR__;
+            $pyruspath = __DIR__;
         }
         $rest = $channel->protocols->rest;
         foreach ($rest as $restpath) {

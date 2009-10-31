@@ -48,6 +48,9 @@ class CLI
             case 'add-category':
                 $this->handleAddCategory();
                 break;
+            case 'categorize':
+                $this->handleCategorize();
+                break;
             case 'release':
                 $this->handleRelease();
                 break;
@@ -56,6 +59,28 @@ class CLI
                 $this->printUsage();
                 break;
         }
+    }
+    
+    function handleCategorize()
+    {
+        if ($_SERVER['argc'] < 3) {
+            $this->printCategorizeUsage();
+            return false;
+        }
+        $args = array();
+        $args['package'] = $_SERVER['argv'][2];
+        $args['category'] = $_SERVER['argv'][3];
+        Categories::linkPackageToCategory($args['package'], $args['category']);
+        echo "Added  {$args['package']} to  {$args['category']} \n";
+    }
+    
+    function printCategorizeUsage()
+    {
+        echo 'Usage: pearscs categorize package category
+    This will add the given package to a category.
+
+    package  Name of the package.
+    category Name of the category.' . PHP_EOL;
     }
     
     function handleAddCategory()
@@ -271,13 +296,14 @@ Usage: pearscs update maintainer [channel.xml]
     public function printUsage()
     {
         echo '
-Usage: pearscs update|create|add-maintainer|add-category|release [option]
+Usage: pearscs create|update|release|... [option]
     Commands:
         update [channel.xml]                  Update the channel xml files.
         create pear.example.com summary [...] Create a new channel.
         add-maintainer handle                 Add a maintainer.
         add-category category [description]   Add a category.
         release package.tgz maintainer        Release package.
+        categorize package category           Categorize a package.
 ';
     }
 }
