@@ -72,7 +72,7 @@ class CLI
         $args['category'] = $_SERVER['argv'][3];
         $categories = new Categories($this->channel);
         $categories->linkPackageToCategory($args['package'], $args['category']);
-        $category = new REST\Category($this->dir . '/rest', $this->channel->name, null, $categories);
+        $category = new REST\Category($this->dir . '/rest', $this->channel->name, 'rest/', $categories);
         $category->saveAllCategories();
         $category->savePackagesInfo($args['category']);
         echo "Added  {$args['package']} to  {$args['category']} \n";
@@ -101,7 +101,7 @@ class CLI
 
         $categories = new Categories($this->channel);
         $categories->create($args['category'], $args['description']);
-        $category = new REST\Category($this->dir . '/rest', $this->channel->name, null, $categories);
+        $category = new REST\Category($this->dir . '/rest', $this->channel->name, 'rest/', $categories);
         $category->saveAllCategories();
         $category->savePackagesInfo($args['category']);
         echo "Added category ", $args['category'], "\n";
@@ -116,7 +116,7 @@ class CLI
 
         $categories = new Categories($this->channel);
         $categories->create($args['category'], $args['description']);
-        $category = new REST\Category($this->dir . '/rest', $this->channel->name, null, $categories);
+        $category = new REST\Category($this->dir . '/rest', $this->channel->name, 'rest/', $categories);
         $category->saveAllCategories();
         $category->savePackagesInfo($args['category']);
         echo "Added category ", $args['category'], "\n";
