@@ -12,6 +12,8 @@ namespace pear2\SimpleChannelServer\REST;
 use pear2\SimpleChannelServer\Categories;
 class Category extends Manager
 {
+    protected $_categories;
+    
     /**
      * Construct a new rest category object
      * 
@@ -19,8 +21,9 @@ class Category extends Manager
      * @param string $channel    the channel name
      * @param string $serverpath relative path within URI to REST files
      */
-    function __construct($savepath, $channel, $serverpath = 'rest/')
+    function __construct($savepath, $channel, $serverpath = 'rest/', Categories $categories)
     {
+        $this->_categories = $categories;
         parent::__construct($savepath, $channel, $serverpath);
     }
 
@@ -33,7 +36,7 @@ class Category extends Manager
      */
     function save(\pear2\Pyrus\Package $new)
     {
-        $category = Categories::getPackageCategory($new->name);
+        $category = $this->_categories->getPackageCategory($new->name);
         $this->savePackagesInfo($category);
         $this->saveAllCategories();
     }
@@ -47,7 +50,7 @@ class Category extends Manager
      */
     function erase(\pear2\Pyrus\Package $new)
     {
-        $category = Categories::getPackageCategory($new->name);
+        $category = $this->_categories->getPackageCategory($new->name);
         $this->savePackagesInfo($category);
     }
 
@@ -60,7 +63,7 @@ class Category extends Manager
      */
     function saveAllCategories()
     {
-        $categories     = Categories::getCategories();
+        $categories     = $this->_categories->getCategories();
         $xml            = $this->_getProlog('a', 'allcategories');
         $xml['a']['ch'] = $this->channel;
         $xml['a']['c']  = array();
@@ -100,8 +103,8 @@ class Category extends Manager
      */
     function saveInfo($category, $desc, $alias = false)
     {
-        if (!Categories::exists($category)) {
-            Categories::create($category, $desc, $alias);
+        if (!$this->_categories->exists($category)) {
+            $this->_categories->create($category, $desc, $alias);
         }
         $xml           = $this->_getProlog('c', 'category');
         $xml['c']['n'] = $category;
@@ -124,7 +127,7 @@ class Category extends Manager
         $pdir = $this->rest . 'p';
         $rdir = $this->rest . 'r';
 
-        $packages = Categories::packagesInCategory($category);
+        $packages = $this->_categories->packagesInCategory($category);
         $reader   = new \pear2\Pyrus\XMLParser;
         clearstatcache();
         $xml['pi'] = array();

@@ -30,26 +30,42 @@ class Categories
      * Category information indexed by category name
      * @var array('Default' => array('desc' => 'Default Category', 'alias' => 'Default'));
      */
-    private $_categories = array();
-    private $_packages = array();
-    /**
-     * @var PEAR2_SimpleChannelServer_Categories
-     */
-    static private $_category;
+    protected $_categories = array();
+    protected $_packages = array();
+    
+    protected $_restDir;
 
-    /**
-     * No direct instantiation allowed
-     */
-    private function __construct()
+    public function __construct(\pear2\Pyrus\Channel $channel)
     {
+        $rest = preg_replace('/https?:\/\/' . $channel->name . '/',
+                            '',
+                            $channel->protocols->rest['REST1.0']->baseurl);
+        
+        $this->_restDir = dirname($channel->path).$rest.'c';
+        
+        $dir = new \DirectoryIterator($this->_restDir);
+        foreach ($dir as $fileinfo) {
+            if (!$fileinfo->isDot()
+                && $fileinfo->isDir()
+                && substr($fileinfo->getFilename(), 0, 1) != '.') {
+                $parser = new \pear2\Pyrus\XMLParser;
+                try {
+                    $content = file_get_contents($fileinfo->getPathname().'/info.xml');
+                    $content = $parser->parseString($content);
+                    $content = current($content);
+                    $this->_categories[$fileinfo->getFilename()] = array('desc'=>$content['d'],
+                                                                         'alias'=>$content['a'],
+                                                                         'xml'=>$content);
+                } catch (\Exception $e) {
+                    // Skip over this one, bad xml which we can rewrite.
+                }
+            }
+        }
     }
 
-    static function exists($category)
+    public function exists($category)
     {
-        if (!isset(self::$_category)) {
-            return false;
-        }
-        if (isset(self::$_category->_categories[$category])) {
+        if (isset($this->_categories[$category])) {
             return true;
         }
         return false;
@@ -64,26 +80,12 @@ class Categories
      * 
      * @return pear2\SimpleChannelServer\Categories
      */
-    static function create($name, $description, $alias = null)
+    public function create($name, $description, $alias = null)
     {
-        if (!isset(self::$_category)) {
-            self::$_category = new Categories;
-        }
-        return self::$_category->_create($name, $description, $alias);
-    }
-
-    private function _create($name, $description, $alias = null)
-    {
-        if (isset($this->_categories[$name])) {
-            throw new Categories\Exception(
-                'Category "' . $name . '" has already been defined');
-        }
         if (!$alias) {
             $alias = $name;
         }
         $this->_categories[$name] = array('desc' => $description, 'alias' => $alias);
-        $this->_info = false;
-        self::$_category = $this;
         $this->_info = $this->getCategories();
         return $this;
     }
@@ -93,13 +95,9 @@ class Categories
      *
      * @return array
      */
-    static function getCategories()
+    public function getCategories()
     {
-        if (self::$_category === null) {
-            throw new Categories\Exception('You must construct a singleton instance with pear2\SimpleChannelServer\Categories::create($name, $description, $alias = null)');
-        } else {
-            return self::$_category->_categories;
-        }
+        return $this->_categories;
     }
 
     /**
@@ -109,13 +107,12 @@ class Categories
      * 
      * @return string
      */
-    static function getPackageCategory($package)
+    public function getPackageCategory($package)
     {
-        if (self::$_category === null) {
-            throw new Categories\Exception('You must construct a singleton instance with pear2\SimpleChannelServer\Categories::create($name, $description, $alias = null)');
-        } else {
-            return self::$_category->getCategory($package);
+        if (!isset($this->_packages[$package])) {
+            $this->link($package, 'Default');
         }
+        return $this->_packages[$package];
     }
 
     /**
@@ -127,70 +124,7 @@ class Categories
      * 
      * @return unknown
      */
-    static function linkPackageToCategory($package, $category, $strict = false)
-    {
-        if (!isset(self::$_category)) {
-            self::$_category = new Categories;
-        }
-        return self::$_category->link($package, $category, $strict);
-    }
-
-    /**
-     * get the packages in a category
-     *
-     * @param string $category name of category
-     * 
-     * @return array
-     */
-    static function packagesInCategory($category)
-    {
-        return self::$_category->packages($category);
-    }
-
-    /**
-     * return all known packages in a specific category
-     *
-     * @param string $category name of category
-     * 
-     * @return array(string) Names of packages in the category
-     */
-    public function packages($category)
-    {
-        $ret = array();
-        foreach ($this->_packages as $p => $c) {
-            if ($c === $category) {
-                $ret[] = $p;
-            }
-        }
-        return $ret;
-    }
-    
-    /**
-     * find what category a package is in - if the category for this package is not
-     * defined, it will assign it to the default category
-     *
-     * @param string $package Name of the package to check
-     * 
-     * @return string name of the category
-     */
-    public function getCategory($package)
-    {
-        if (!isset($this->_packages[$package])) {
-            $this->link($package, 'Default');
-        }
-        return $this->_packages[$package];
-    }
-    
-    /**
-     * Links a package to a specific category
-     *
-     * @param string $package  name of package
-     * @param string $category name of category
-     * @param bool   $strict   ensure packages are only in one category
-     * 
-     * @return void
-     */
-    public function link($package, $category, $strict = false)
+    public function linkPackageToCategory($package, $category, $strict = false)
     {
         if (isset($this->_packages[$package]) && $strict) {
             throw new Categories\Exception(
@@ -202,15 +136,24 @@ class Categories
                 'Unknown category "' . $category . '"');
         }
         $this->_packages[$package] = $category;
+        return true;
     }
 
     /**
-     * called after serialized and woken up
+     * get the packages in a category
+     *
+     * @param string $category name of category
      * 
-     * @return void
+     * @return array
      */
-    function __wakeup()
+    public function packagesInCategory($category)
     {
-        self::$_category = $this;
+        $ret = array();
+        foreach ($this->_packages as $p => $c) {
+            if ($c === $category) {
+                $ret[] = $p;
+            }
+        }
+        return $ret;
     }
 }

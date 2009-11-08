@@ -70,7 +70,11 @@ class CLI
         $args = array();
         $args['package'] = $_SERVER['argv'][2];
         $args['category'] = $_SERVER['argv'][3];
-        Categories::linkPackageToCategory($args['package'], $args['category']);
+        $categories = new Categories($this->channel);
+        $categories->linkPackageToCategory($args['package'], $args['category']);
+        $category = new REST\Category($this->dir . '/rest', $this->channel->name, null, $categories);
+        $category->saveAllCategories();
+        $category->savePackagesInfo($args['category']);
         echo "Added  {$args['package']} to  {$args['category']} \n";
     }
     
@@ -94,9 +98,10 @@ class CLI
         $args['category']    = $_SERVER['argv'][2];
         $args['description'] = (isset($_SERVER['argv'][3]))?
                                     $_SERVER['argv'][3]:$_SERVER['argv'][2];
-        
-        Categories::create($args['category'], $args['description']);
-        $category = new REST\Category($this->dir . '/rest', $this->channel->name);
+
+        $categories = new Categories($this->channel);
+        $categories->create($args['category'], $args['description']);
+        $category = new REST\Category($this->dir . '/rest', $this->channel->name, null, $categories);
         $category->saveAllCategories();
         $category->savePackagesInfo($args['category']);
         echo "Added category ", $args['category'], "\n";
@@ -109,8 +114,9 @@ class CLI
                                 'scs-create command first');
         }
 
-        Categories::create($args['category'], $args['description']);
-        $category = new REST\Category($this->dir . '/rest', $this->channel->name);
+        $categories = new Categories($this->channel);
+        $categories->create($args['category'], $args['description']);
+        $category = new REST\Category($this->dir . '/rest', $this->channel->name, null, $categories);
         $category->saveAllCategories();
         $category->savePackagesInfo($args['category']);
         echo "Added category ", $args['category'], "\n";
