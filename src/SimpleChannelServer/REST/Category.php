@@ -124,9 +124,8 @@ class Category extends Manager
     function savePackagesInfo($category)
     {
         $xml  = array();
-        $pdir = $this->rest . 'p';
-        $rdir = $this->rest . 'r';
-
+        $pdir = $this->rest . DIRECTORY_SEPARATOR . 'p';
+        $rdir = $this->rest . DIRECTORY_SEPARATOR . 'r';
         $packages = $this->_categories->packagesInCategory($category);
         $reader   = new \pear2\Pyrus\XMLParser;
         clearstatcache();

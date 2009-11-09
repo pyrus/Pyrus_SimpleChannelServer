@@ -71,11 +71,14 @@ class CLI
         $args['package'] = $_SERVER['argv'][2];
         $args['category'] = $_SERVER['argv'][3];
         $categories = new Categories($this->channel);
+        if (!$categories->exists($args['category'])) {
+            echo 'That category doesn\'t exist yet. Use add-category first' . PHP_EOL;
+        }
         $categories->linkPackageToCategory($args['package'], $args['category']);
         $category = new REST\Category($this->dir . '/rest', $this->channel->name, 'rest/', $categories);
         $category->saveAllCategories();
         $category->savePackagesInfo($args['category']);
-        echo "Added  {$args['package']} to  {$args['category']} \n";
+        echo "Added  {$args['package']} to {$args['category']} \n";
     }
     
     function printCategorizeUsage()
