@@ -14,11 +14,11 @@ foreach (array('sqlite3', 'phar', 'spl', 'pcre', 'simplexml') as $ext) {
 }
 function pyrus_autoload($class)
 {
-    $class = str_replace('_', '\\', $class);
+    $class = str_replace(array('_','\\'), '/', $class);
     if (file_exists('phar://' . __FILE__ . '/PEAR2_SimpleChannelServer-@PACKAGE_VERSION@/php/' .
-                    implode('/', explode('\\', $class)) . '.php')) {
+                    $class . '.php')) {
         include 'phar://' . __FILE__ . '/PEAR2_SimpleChannelServer-@PACKAGE_VERSION@/php/' .
-            implode('/', explode('\\', $class)) . '.php';
+            $class . '.php';
     }
 }
 spl_autoload_register("pyrus_autoload");
