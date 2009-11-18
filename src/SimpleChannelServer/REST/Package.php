@@ -93,13 +93,8 @@ class Package extends Manager
         $xml = array();
         $xml['n'] = $new->name;
         $xml['c'] = $this->channel;
-        try {
-            $category = Categories::getPackageCategory($new->name);
-        } catch (Categories\Exception $e) {
-            $categories = Categories::create('Default', 'This is the default category');
-            $categories->linkPackageToCategory($new->name,'Default');
-            $category = Categories::getPackageCategory($new->name);
-        }
+        $categories = new Categories($this->channel);
+        $category = $categories->getPackageCategory($new->name);
         $xml['ca'] = array(
             'attribs' => array('xlink:href' => $this->getCategoryRESTLink(urlencode($category))),
             '_content' => $category,

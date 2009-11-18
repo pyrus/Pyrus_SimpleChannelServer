@@ -104,7 +104,7 @@ class CLI
 
         $categories = new Categories($this->channel);
         $categories->create($args['category'], $args['description']);
-        $category = new REST\Category($this->dir . '/rest', $this->channel->name, 'rest/', $categories);
+        $category = new REST\Category($this->dir . '/rest', $this->channel, 'rest/', $categories);
         $category->saveAllCategories();
         $category->savePackagesInfo($args['category']);
         echo "Added category ", $args['category'], "\n";
@@ -119,8 +119,6 @@ class CLI
 
         $categories = new Categories($this->channel);
         $categories->create($args['category'], $args['description']);
-        $category = new REST\Category($this->dir . '/rest', $this->channel->name, 'rest/', $categories);
-        $category->saveAllCategories();
         $category->savePackagesInfo($args['category']);
         echo "Added category ", $args['category'], "\n";
     }

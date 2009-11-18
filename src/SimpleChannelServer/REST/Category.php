@@ -67,26 +67,17 @@ class Category extends Manager
         $xml            = $this->_getProlog('a', 'allcategories');
         $xml['a']['ch'] = $this->channel;
         $xml['a']['c']  = array();
-        if (count($categories) == 1) {
-            $xml['a']['c'] = array('attribs' =>
-                array('xlink:href' =>
-                    $this->getCategoryRESTLink(urlencode(key($categories))
-                        . '/info.xml')),
-                '_content' => key($categories));
-                $this->saveInfo(key($categories),
-                                $categories[key($categories)]['desc'],
-                                $categories[key($categories)]['alias']);
-        } else {
-            foreach ($categories as $category => $data) {
-                $xml['a']['c'][] = array(
-                    'attribs' => array(
-                        'xlink:href' =>
-                        $this->getCategoryRESTLink(urlencode($category) . '/info.xml')),
-                    '_content' => $category,
-                );
-                $this->saveInfo($category, $data['desc'], $data['alias']);
-            }
+        
+        foreach ($categories as $category => $data) {
+            $xml['a']['c'][] = array(
+                'attribs' => array(
+                    'xlink:href' =>
+                    $this->getCategoryRESTLink(urlencode($category) . '/info.xml')),
+                '_content' => $category,
+            );
+            $this->saveInfo($category, $data['d'], $data['a']);
         }
+    
         $this->saveCategoryREST('categories.xml', $xml);
     }
 

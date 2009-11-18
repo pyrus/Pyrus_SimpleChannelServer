@@ -66,7 +66,7 @@ class Main
         }
         $this->uri     = 'http://' . $channel->name . '/';
         $this->channel = $channel;
-        $this->rest    = new REST\Manager($webpath.'/'.$restpath, $channel->name,
+        $this->rest    = new REST\Manager($webpath.'/'.$restpath, $channel,
             $restpath);
         $this->get     = new Get($webpath.'/get', $pyruspath);
         try {
@@ -97,7 +97,8 @@ class Main
      */
     function listCategories()
     {
-        return Categories::getCategories();
+        $categories = new Categories($this->channel);
+        return $categories->getCategories();
     }
 
     /**
@@ -107,9 +108,10 @@ class Main
      */
     function listPackagesByCategory()
     {
+        $categories = new Categories($this->channel);
         $ret = array();
-        foreach (Categories::getCategories() as $cat) {
-            $ret[$cat] = Categories::packagesInCategory($cat);
+        foreach ($categories->getCategories() as $cat) {
+            $ret[$cat] = $categories->packagesInCategory($cat);
         }
         return $ret;
     }
@@ -123,8 +125,9 @@ class Main
      */
     function listPackages($category = null)
     {
+        $categories = new Categories($this->channel);
         if ($category) {
-            return Categories::packagesInCategory($category);
+            return $categories->packagesInCategory($category);
         }
         if (!file_exists($this->rest->getRESTPath('p', 'allpackages.xml'))) {
             return array();

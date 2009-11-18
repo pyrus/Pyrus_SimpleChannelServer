@@ -88,7 +88,8 @@ class Release extends Manager
             ),
             '_content' => $new->name);
         $xml['r']['c']  = $this->channel;
-        $category       = Categories::getPackageCategory($new->name);
+        $categories     = new Categories($this->channel);
+        $category       = $categories->getPackageCategory($new->name);
         $xml['r']['v']  = $new->version['release'];
         $xml['r']['st'] = $new->stability['release'];
         $xml['r']['l']  = $new->license['name'];
@@ -125,7 +126,8 @@ class Release extends Manager
             ),
             '_content' => $new->name);
         $xml['r']['c']  = $this->channel;
-        $category       = Categories::getPackageCategory($new->name);
+        $categories     = new Categories($this->channel);
+        $category       = $categories->getPackageCategory($new->name);
         $xml['r']['v']  = $new->version['release'];
         $xml['r']['a']  = $new->version['api'];
         $xml['r']['mp'] = $new->dependencies['required']->php->min;

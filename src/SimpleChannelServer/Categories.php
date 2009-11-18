@@ -34,16 +34,22 @@ class Categories
     protected $_packages = array();
     
     protected $_restDir;
+    
+    protected $channel;
 
     public function __construct(\pear2\Pyrus\Channel $channel)
     {
+        $this->channel = $channel;
         $rest = preg_replace('/https?:\/\/' . $channel->name . '/',
                             '',
                             $channel->protocols->rest['REST1.0']->baseurl);
         
-        $this->_restDir = dirname($channel->path).$rest.'c';
+        $this->_restDir = dirname($channel->path).$rest;
         
-        $dir = new \DirectoryIterator($this->_restDir);
+        if (!file_exists($this->_restDir.'c')) {
+            mkdir($this->_restDir.'c');
+        }
+        $dir = new \DirectoryIterator($this->_restDir.'c');
         foreach ($dir as $fileinfo) {
             if (!$fileinfo->isDot()
                 && $fileinfo->isDir()
@@ -52,10 +58,9 @@ class Categories
                 try {
                     $content = file_get_contents($fileinfo->getPathname().'/info.xml');
                     $content = $parser->parseString($content);
-                    $content = current($content);
-                    $this->_categories[$fileinfo->getFilename()] = array('desc'=>$content['d'],
-                                                                         'alias'=>$content['a'],
-                                                                         'xml'=>$content);
+                    if (isset($content['c'], $content['c']['d'], $content['c']['a'])) {
+                        $this->_categories[urldecode($fileinfo->getFilename())] = $content['c'];
+                    }
                 } catch (\Exception $e) {
                     // Skip over this one, bad xml which we can rewrite.
                 }
@@ -85,8 +90,9 @@ class Categories
         if (!$alias) {
             $alias = $name;
         }
-        $this->_categories[$name] = array('desc' => $description, 'alias' => $alias);
-        $this->_info = $this->getCategories();
+        $this->_categories[$name] = array('d' => $description, 'a' => $alias);
+        $category = new REST\Category($this->_restDir, $this->channel, 'rest/', $this);
+        $category->saveAllCategories();
         return $this;
     }
     
@@ -110,7 +116,12 @@ class Categories
     public function getPackageCategory($package)
     {
         if (!isset($this->_packages[$package])) {
-            $this->link($package, 'Default');
+            try {
+                $this->linkPackageToCategory($package, 'Default');
+            } catch (Categories\Exception $e) {
+                $this->create('Default', 'This is the default category');
+                $this->linkPackageToCategory($package, 'Default');
+            }
         }
         return $this->_packages[$package];
     }

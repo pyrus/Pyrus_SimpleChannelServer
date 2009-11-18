@@ -20,11 +20,20 @@ class Get
 
     function saveRelease($new, $releaser)
     {
+        $parts = pathinfo($new);
         $cloner = new \pear2\Pyrus\Package\Cloner($new, $this->get);
-        $cloner->toTar();
-        $cloner->toTgz();
-        $cloner->toPhar();
-        $cloner->toZip();
+        if (!file_exists($this->get.$parts['filename'].'.tar')) {
+            $cloner->toTar();
+        }
+        if (!file_exists($this->get.$parts['filename'].'.tgz')) {
+            $cloner->toTgz();
+        }
+        if (!file_exists($this->get.$parts['filename'].'.phar')) {
+            $cloner->toPhar();
+        }
+        if (!file_exists($this->get.$parts['filename'].'.zip')) {
+            $cloner->toZip();
+        }
         return true; 
     }
 

@@ -29,14 +29,12 @@ class Manager
      *
      * @var string
      */
-    protected $chan;
+    protected $channel;
 
     /**
      * @param string $savepath   full path to REST files
      * @param string $channel    the channel name
      * @param string $serverpath relative path within URI to REST files
-     * @param array  $admins     an array of handles that are channel administrators
-     *                           and can release/delete any package
      */
     function __construct($savepath, $channel, $serverpath = 'rest/')
     {
@@ -48,15 +46,12 @@ class Manager
             }
         }
         $this->uri     = $serverpath;
-        $this->chan    = $channel;
+        $this->channel = $channel;
+        $this->chan    = $channel->name;
     }
 
     /**
      * Save release REST for a new package release.
-     * 
-     * Prior to calling this, categories and category package links
-     * should be set up, otherwise the package will be released under
-     * the "Default" category. 
      *
      * @param \pear2\Pyrus\Package $release
      * @param string              $releaser handle of person who is uploading this release
@@ -69,18 +64,14 @@ class Manager
                 $this->chan . ' channel, and package is in ' .
                 $new->channel . ' channel');
         }
-        if (!isset($new->maintainer[$releaser]) ||
-            $new->maintainer[$releaser]->role !== 'lead') {
-            throw new Exception($releaser . ' is not a ' .
-                'lead maintainer of this package, and cannot release');
-        }
-        $category = new Category($this->rest, $this->chan,
+        $categories = new \pear2\SimpleChannelServer\Categories($this->channel);
+        $category = new Category($this->rest, $this->channel,
+            $this->uri, $categories);
+        $package = new Package($this->rest, $this->channel,
             $this->uri);
-        $package = new Package($this->rest, $this->chan,
+        $maintainer = new Maintainer($this->rest, $this->channel,
             $this->uri);
-        $maintainer = new Maintainer($this->rest, $this->chan,
-            $this->uri);
-        $release = new Release($this->rest, $this->chan,
+        $release = new Release($this->rest, $this->channel,
             $this->uri);
         $maintainer->save($new);
         $package->save($new);
@@ -106,18 +97,13 @@ class Manager
                 $this->chan . ' channel, and package is in ' .
                 $new->channel . ' channel');
         }
-        if (!isset($this->_admins[$releaser]) && (!isset($new->maintainer[$releaser]) ||
-              $new->maintainer[$releaser]->role !== 'lead')) {
-            throw new Exception($releaser . ' is not a ' .
-                'lead maintainer of this package, and cannot delete the release');
-        }
-        $category = new Category($this->rest, $this->chan,
+        $category = new Category($this->rest, $this->channel,
             $this->uri);
-        $package = new Package($this->rest, $this->chan,
+        $package = new Package($this->rest, $this->channel,
             $this->uri);
-        $maintainer = new Maintainer($this->rest, $this->chan,
+        $maintainer = new Maintainer($this->rest, $this->channel,
             $this->uri);
-        $release = new Release($this->rest, $this->chan,
+        $release = new Release($this->rest, $this->channel,
             $this->uri);
         $maintainer->erase($new, $deleteorphaned);
         $package->erase($new);
