@@ -92,7 +92,7 @@ class Package extends Manager
         }
         $xml = array();
         $xml['n'] = $new->name;
-        $xml['c'] = $this->channel;
+        $xml['c'] = $this->channel->name;
         $categories = new Categories($this->channel);
         $category = $categories->getPackageCategory($new->name);
         $xml['ca'] = array(

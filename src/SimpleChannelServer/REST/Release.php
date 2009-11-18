@@ -87,7 +87,7 @@ class Release extends Manager
                 $this->getPackageRESTLink(strtolower($new->name))
             ),
             '_content' => $new->name);
-        $xml['r']['c']  = $this->channel;
+        $xml['r']['c']  = $this->channel->name;
         $categories     = new Categories($this->channel);
         $category       = $categories->getPackageCategory($new->name);
         $xml['r']['v']  = $new->version['release'];
@@ -99,7 +99,7 @@ class Release extends Manager
         $xml['r']['da'] = $new->date. ' ' . $new->time;
         $xml['r']['n']  = $new->notes;
         $xml['r']['f']  = filesize($new->archivefile);
-        $xml['r']['g']  = 'http://' . $this->channel . '/get/' . $new->name .
+        $xml['r']['g']  = 'http://' . $this->channel->name . '/get/' . $new->name .
             '-' . $new->version['release'];
         $xml['r']['x']  = array('attribs' => array(
             'xlink:href' => 'package.' . $new->version['release'] . '.xml'
@@ -125,7 +125,7 @@ class Release extends Manager
                 $this->getPackageRESTLink(strtolower($new->name))
             ),
             '_content' => $new->name);
-        $xml['r']['c']  = $this->channel;
+        $xml['r']['c']  = $this->channel->name;
         $categories     = new Categories($this->channel);
         $category       = $categories->getPackageCategory($new->name);
         $xml['r']['v']  = $new->version['release'];
@@ -139,7 +139,7 @@ class Release extends Manager
         $xml['r']['da'] = $new->date . ' ' . $new->time;
         $xml['r']['n']  = $new->notes;
         $xml['r']['f']  = filesize($new->archivefile);
-        $xml['r']['g']  = 'http://' . $this->channel . '/get/' . $new->name .
+        $xml['r']['g']  = 'http://' . $this->channel->name . '/get/' . $new->name .
             '-' . $new->version['release'];
         $xml['r']['x']  = array('attribs' => array(
             'xlink:href' => 'package.' . $new->version['release'] . '.xml'
