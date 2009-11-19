@@ -65,7 +65,7 @@ class Category extends Manager
     {
         $categories     = $this->_categories->getCategories();
         $xml            = $this->_getProlog('a', 'allcategories');
-        $xml['a']['ch'] = $this->channel;
+        $xml['a']['ch'] = $this->channel->name;
         $xml['a']['c']  = array();
         
         foreach ($categories as $category => $data) {
