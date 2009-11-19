@@ -77,6 +77,7 @@ class CLI
         $categories->linkPackageToCategory($args['package'], $args['category']);
         $category = new REST\Category($this->dir . '/rest', $this->channel->name, 'rest/', $categories);
         $category->saveAllCategories();
+        $category->savePackages($args['category']);
         $category->savePackagesInfo($args['category']);
         echo "Added  {$args['package']} to {$args['category']} \n";
     }

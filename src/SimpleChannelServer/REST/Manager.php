@@ -97,14 +97,12 @@ class Manager
                 $this->chan . ' channel, and package is in ' .
                 $new->channel . ' channel');
         }
-        $category = new Category($this->rest, $this->channel,
-            $this->uri);
-        $package = new Package($this->rest, $this->channel,
-            $this->uri);
-        $maintainer = new Maintainer($this->rest, $this->channel,
-            $this->uri);
-        $release = new Release($this->rest, $this->channel,
-            $this->uri);
+
+        $category   = new Category($this->rest, $this->channel, $this->uri);
+        $package    = new Package($this->rest, $this->channel, $this->uri);
+        $maintainer = new Maintainer($this->rest, $this->channel, $this->uri);
+        $release    = new Release($this->rest, $this->channel, $this->uri);
+
         $maintainer->erase($new, $deleteorphaned);
         $package->erase($new);
         $release->erase($new);

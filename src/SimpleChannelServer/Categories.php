@@ -159,12 +159,30 @@ class Categories
      */
     public function packagesInCategory($category)
     {
-        $ret = array();
-        foreach ($this->_packages as $p => $c) {
-            if ($c === $category) {
-                $ret[] = $p;
+        $packages = array();
+        $file = $this->_restDir.'c/'.urlencode($category).'/packages.xml';
+        if (file_exists($file)) {
+            $parser = new \pear2\Pyrus\XMLParser;
+            try {
+                $content = file_get_contents($file);
+                $content = $parser->parseString($content);
+                if (isset($content['l']['p']['_content'])) {
+                    $packages[] = $content['l']['p']['_content'];
+                } else {
+                    foreach ($content['l']['p'] as $package) {
+                        $packages[] = $package['_content'];
+                    }
+                }
+            } catch(\Exception $e) {
+                // unable to parse, assume empty.
             }
         }
-        return $ret;
+        foreach ($this->_packages as $p => $c) {
+            if ($c === $category
+                && !in_array($p, $packages)) {
+                $packages[] = $p;
+            }
+        }
+        return $packages;
     }
 }

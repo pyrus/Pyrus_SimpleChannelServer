@@ -37,6 +37,7 @@ class Category extends Manager
     function save(\pear2\Pyrus\Package $new)
     {
         $category = $this->_categories->getPackageCategory($new->name);
+        $this->savePackages($category);
         $this->savePackagesInfo($category);
         $this->saveAllCategories();
     }
@@ -100,9 +101,28 @@ class Category extends Manager
         $xml           = $this->_getProlog('c', 'category');
         $xml['c']['n'] = $category;
         $xml['c']['a'] = $alias ? $category : $alias;
-        $xml['c']['c'] = $this->channel;
+        $xml['c']['c'] = $this->channel->name;
         $xml['c']['d'] = $desc;
         $this->saveCategoryREST(urlencode($category) . '/info.xml', $xml);
+    }
+    
+    /**
+     * Save packages.xml containing a list of all packages within this category
+     * 
+     * @param string $category Category to save
+     * 
+     * @return void
+     */
+    function savePackages($category)
+    {
+        $packages = '';
+        foreach ($this->_categories->packagesInCategory($category) as $package) {
+            $packages['p'][] = array('attribs' => array('xlink:href' => $this->getPackageRESTLink($package)),
+                                     '_content' => $package);
+        }
+        $xml = $this->_getProlog('l', 'categorypackages');
+        $xml['l'][] = $packages;
+        $this->saveCategoryREST(urlencode($category) . DIRECTORY_SEPARATOR . 'packages.xml', $xml);
     }
 
     /**
