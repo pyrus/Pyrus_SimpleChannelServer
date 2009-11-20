@@ -18,13 +18,21 @@ class CLI
     
     public $pyruspath = false;
     
+    /**
+     * The simplechannelserver object
+     * 
+     * @var pear2\SimpleChannelServer\Main
+     */
+    public $scs;
+    
     public function __construct()
     {
         $channel_file = getcwd() . '/channel.xml';
+        $this->dir = getcwd();
         if (file_exists($channel_file)) {
             $this->channel = new \pear2\Pyrus\Channel(new \pear2\Pyrus\ChannelFile($channel_file));
+            $this->scs = new Main($this->channel, $this->dir);
         }
-        $this->dir = getcwd();
     }
     
     public function process()
@@ -40,8 +48,6 @@ class CLI
             case 'create':
                 return $this->handleCreate();
             case 'add-maintainer':
-                $scs = new Main($this->channel,
-                    $this->dir);
                     // is this even needed?
                     // yes, new maintainers that have not yet released anything.
                 break;
@@ -70,15 +76,7 @@ class CLI
         $args = array();
         $args['package'] = $_SERVER['argv'][2];
         $args['category'] = $_SERVER['argv'][3];
-        $categories = new Categories($this->channel);
-        if (!$categories->exists($args['category'])) {
-            echo 'That category doesn\'t exist yet. Use add-category first' . PHP_EOL;
-        }
-        $categories->linkPackageToCategory($args['package'], $args['category']);
-        $category = new REST\Category($this->dir . '/rest', $this->channel->name, 'rest/', $categories);
-        $category->saveAllCategories();
-        $category->savePackages($args['category']);
-        $category->savePackagesInfo($args['category']);
+        $this->scs->categorize($args['package'], $args['category']);
         echo "Added  {$args['package']} to {$args['category']} \n";
     }
     
@@ -177,7 +175,7 @@ class CLI
             $maintainer = \pear2\Pyrus\Config::current()->handle;
             \pear2\Pyrus\Config::current()->default_channel = $chan;
         }
-        $scs = new Main($this->channel, $this->dir);
+        
         $dirname = $this->dir . '/get/';
         $dir = new \DirectoryIterator($dirname);
         $errs = new \pear2\MultiErrors;
@@ -187,7 +185,7 @@ class CLI
                 && substr($file->getFilename(), -3) != 'tar'
                 && substr($file->getFilename(), 0, 1) != '.') {
                 try {
-                    $scs->saveRelease($dirname.$file->getFilename(), $maintainer);
+                    $this->scs->saveRelease($dirname.$file->getFilename(), $maintainer);
                     echo $file->getFilename().' successfully saved.'.PHP_EOL;
                 } catch(\Exception $e) {
                     echo $file->getFilename().' '.$e->getMessage().PHP_EOL;
@@ -218,8 +216,7 @@ class CLI
             $args['maintainer'] = \pear2\Pyrus\Config::current()->handle;
             \pear2\Pyrus\Config::current()->default_channel = $chan;
         }
-        $scs = new Main($this->channel, $this->dir, $this->pyruspath);
-        $scs->saveRelease($args['path'], $args['maintainer']);
+        $this->scs->saveRelease($args['path'], $args['maintainer']);
         echo 'Release successfully saved.'.PHP_EOL;
     }
 

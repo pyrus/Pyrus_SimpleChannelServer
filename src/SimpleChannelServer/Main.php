@@ -19,6 +19,12 @@ class Main
      * @var string
      */
     protected $webpath;
+    
+    /**
+     * Path to rest files
+     * @var string
+     */
+    protected $restpath;
     /**
      * @var string
      */
@@ -64,17 +70,31 @@ class Main
         if (dirname($restpath . 'a') . '/' !== $restpath) {
             $restpath .= '/';
         }
-        $this->uri     = 'http://' . $channel->name . '/';
-        $this->channel = $channel;
-        $this->rest    = new REST\Manager($webpath.'/'.$restpath, $channel,
-            $restpath);
-        $this->get     = new Get($webpath.'/get', $pyruspath);
+        $this->restpath = $webpath.'/'.$restpath;
+        $this->uri      = 'http://' . $channel->name . '/';
+        $this->channel  = $channel;
+        $this->rest     = new REST\Manager($this->restpath,
+                                           $channel,
+                                           $restpath);
+        $this->get      = new Get($webpath.'/get', $pyruspath);
         try {
             $a = \pear2\Pyrus\Config::singleton($pyruspath);
         } catch (Exception $e) {
             throw new Exception('Cannot initialize Pyrus Config',
                 $e);
         }
+    }
+    
+    function categorize($package, $category)
+    {
+        $categories = new Categories($this->channel);
+        if (!$categories->exists($category)) {
+            echo 'That category doesn\'t exist yet. Use add-category first' . PHP_EOL;
+        }
+        $categories->linkPackageToCategory($package, $category);
+        $rcat = new REST\Category($this->restpath, $this->channel, 'rest/', $categories);
+        $rcat->savePackages($category);
+        $rcat->savePackagesInfo($category);
     }
 
     function saveRelease($package, $releaser)
