@@ -40,7 +40,7 @@ class Categories
     public function __construct(\pear2\Pyrus\Channel $channel)
     {
         $this->channel = $channel;
-        $rest = preg_replace('/https?:\/\/' . $channel->name . '/',
+        $rest = preg_replace('/https?:\/\/' . str_replace('/','\/', $channel->name) . '/',
                             '',
                             $channel->protocols->rest['REST1.0']->baseurl);
         
