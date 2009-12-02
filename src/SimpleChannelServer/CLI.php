@@ -80,6 +80,12 @@ class CLI
         echo "Added  {$args['package']} to {$args['category']} \n";
     }
     
+    function pyrusCategorize($frontend, $args)
+    {
+        $this->scs->categorize($args['package'], $args['category']);
+        echo "Added  {$args['package']} to {$args['category']} \n";
+    }
+    
     function printCategorizeUsage()
     {
         echo 'Usage: pearscs categorize package category
