@@ -1,14 +1,11 @@
-A Simple Channel Server for PEAR2 compatible channels
+A simple channel server for PEAR compatible channels
 
 This package contains a set of scripts to create a simple PEAR compatible
-channel server. Included with the package is the pearscs command which you
-can use for the command line to manage a pear channel.
-
-The pearscs utility will be installed in the directory configured by the
-bin_dir setting within Pyrus.
+channel server. Included with the package are the scs- commands which are 
+added to pyrus to manage a PEAR channel.
 
 Example usage from the command line:
-pearscs create pear.example.com "My Channel" myalias
-pearscs release MyPackage-0.0.0.tgz myhandle
+php pyrus.phar scs-create pear.example.com "My Channel"
+php pyrus.phar scs-release MyPackage-0.0.0.tgz myhandle
 
-Test
+More information here: http://pear.php.net/manual/en/channels.scs.php
