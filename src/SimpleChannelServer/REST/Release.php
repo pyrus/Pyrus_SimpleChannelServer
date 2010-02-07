@@ -196,11 +196,13 @@ class Release extends Manager
         $path   = $this->getRESTPath('r', strtolower($new->name) .
             DIRECTORY_SEPARATOR . 'allreleases' . $is2 . '.xml');
         if (file_exists($path)) {
+            // Use the existing file, and add to it
             $xml = $reader->parse($path);
             if (isset($xml['a']['r']) && !isset($xml['a']['r'][0])) {
                 $xml['a']['r'] = array($xml['a']['r']);
             }
         } else {
+            // Start up a new allreleases file
             $xml           = $this->_getProlog('a', 'allreleases' . $is2);
             $xml['a']['p'] = $new->name;
             $xml['a']['c'] = $this->chan;
@@ -251,10 +253,13 @@ class Release extends Manager
             }
             $test = $xml['a']['r'];
             if (count($test) && !isset($test[0])) {
+                // Info exists, and there's only one release
                 if ($test['v'] != $info['v']) {
                     $test = array($info, $test);
                 }
             } else {
+                // There are multiple releases already in the file
+                // Loop through them to see if this release is already present
                 $found = false;
                 foreach ($test as $i => $rel) {
                     if ($rel['v'] == $info['v']) {
@@ -267,10 +272,19 @@ class Release extends Manager
                     array_unshift($test, $info);
                 }
             }
+
+            // Ok, now we have the latest release info ready
             if (count($test) == 1) {
                 $test = $test[0];
+            } else {
+                // Now sort the releases so we don't confuse stupid versions of PEAR & Pyrus
+                usort($test, function($r1, $r2){
+                    return version_compare($r1['v'], $r2['v'], '<');
+                }
+                );
             }
             $xml['a']['r'] = $test;
+
         }
         $this->saveReleaseREST(strtolower($new->name) . '/allreleases' . $is2 . '.xml', $xml);
         return $xml;
