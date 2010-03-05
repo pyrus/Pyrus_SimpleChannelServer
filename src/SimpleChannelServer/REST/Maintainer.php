@@ -32,8 +32,8 @@ class Maintainer extends Manager
     function saveInfo($handle, $name, $uri = false)
     {
         $xml = $this->_getProlog('m', 'maintainer');
-        $xml['m']['n'] = $handle;
-        $xml['m']['h'] = $name;
+        $xml['m']['n'] = $name;
+        $xml['m']['h'] = $handle;
         if ($uri) {
             $xml['m']['u'] = $uri;
         }
