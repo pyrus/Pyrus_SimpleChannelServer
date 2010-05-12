@@ -8,5 +8,5 @@ if (file_exists(dirname(__FILE__).'/../../../autoload.php')) {
 
 require_once $autoload;
 
-$cli = new \pear2\SimpleChannelServer\CLI();
+$cli = new \PEAR2\SimpleChannelServer\CLI();
 $cli->process();

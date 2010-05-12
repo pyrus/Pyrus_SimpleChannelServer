@@ -1,3 +1,3 @@
 <?php
-namespace pear2\SimpleChannelServer\Categories;
+namespace PEAR2\SimpleChannelServer\Categories;
 class Exception extends \Exception {}

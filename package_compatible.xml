@@ -27,8 +27,8 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2009-12-19</date>
- <time>16:28:03</time>
+ <date>2010-04-01</date>
+ <time>10:17:41</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -43,18 +43,18 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
  <contents>
   <dir name="/">
    <file role="script" name="script/pearscs"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/REST/Release.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/REST/Package.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/REST/Manager.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/REST/Maintainer.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/REST/Category.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/Main.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/Get.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/Exception.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/CLI.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/Channel.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/Categories/Exception.php"/>
-   <file role="php" name="php/pear2/SimpleChannelServer/Categories.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/REST/Release.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/REST/Package.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/REST/Manager.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/REST/Maintainer.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/REST/Category.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/Main.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/Get.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/Exception.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/CLI.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/Channel.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/Categories/Exception.php"/>
+   <file role="php" name="php/PEAR2/SimpleChannelServer/Categories.php"/>
    <file role="doc" name="doc/PEAR2_SimpleChannelServer/pear2.php.net/examples/examples/upgradeFromChiara.php"/>
    <file role="doc" name="doc/PEAR2_SimpleChannelServer/pear2.php.net/examples/examples/update_channel.php"/>
    <file role="data" name="customcommand/PEAR2_SimpleChannelServer/pear2.php.net/commands.xml"/>
@@ -83,18 +83,18 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
    <install name="customcommand/PEAR2_SimpleChannelServer/pear2.php.net/commands.xml" as="pear2.php.net/commands.xml"/>
    <install name="doc/PEAR2_SimpleChannelServer/pear2.php.net/examples/examples/update_channel.php" as="pear2.php.net/examples/examples/update_channel.php"/>
    <install name="doc/PEAR2_SimpleChannelServer/pear2.php.net/examples/examples/upgradeFromChiara.php" as="pear2.php.net/examples/examples/upgradeFromChiara.php"/>
-   <install name="php/pear2/SimpleChannelServer/Categories.php" as="pear2/SimpleChannelServer/Categories.php"/>
-   <install name="php/pear2/SimpleChannelServer/Categories/Exception.php" as="pear2/SimpleChannelServer/Categories/Exception.php"/>
-   <install name="php/pear2/SimpleChannelServer/Channel.php" as="pear2/SimpleChannelServer/Channel.php"/>
-   <install name="php/pear2/SimpleChannelServer/CLI.php" as="pear2/SimpleChannelServer/CLI.php"/>
-   <install name="php/pear2/SimpleChannelServer/Exception.php" as="pear2/SimpleChannelServer/Exception.php"/>
-   <install name="php/pear2/SimpleChannelServer/Get.php" as="pear2/SimpleChannelServer/Get.php"/>
-   <install name="php/pear2/SimpleChannelServer/Main.php" as="pear2/SimpleChannelServer/Main.php"/>
-   <install name="php/pear2/SimpleChannelServer/REST/Category.php" as="pear2/SimpleChannelServer/REST/Category.php"/>
-   <install name="php/pear2/SimpleChannelServer/REST/Maintainer.php" as="pear2/SimpleChannelServer/REST/Maintainer.php"/>
-   <install name="php/pear2/SimpleChannelServer/REST/Manager.php" as="pear2/SimpleChannelServer/REST/Manager.php"/>
-   <install name="php/pear2/SimpleChannelServer/REST/Package.php" as="pear2/SimpleChannelServer/REST/Package.php"/>
-   <install name="php/pear2/SimpleChannelServer/REST/Release.php" as="pear2/SimpleChannelServer/REST/Release.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/Categories.php" as="PEAR2/SimpleChannelServer/Categories.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/Categories/Exception.php" as="PEAR2/SimpleChannelServer/Categories/Exception.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/Channel.php" as="PEAR2/SimpleChannelServer/Channel.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/CLI.php" as="PEAR2/SimpleChannelServer/CLI.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/Exception.php" as="PEAR2/SimpleChannelServer/Exception.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/Get.php" as="PEAR2/SimpleChannelServer/Get.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/Main.php" as="PEAR2/SimpleChannelServer/Main.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/REST/Category.php" as="PEAR2/SimpleChannelServer/REST/Category.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/REST/Maintainer.php" as="PEAR2/SimpleChannelServer/REST/Maintainer.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/REST/Manager.php" as="PEAR2/SimpleChannelServer/REST/Manager.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/REST/Package.php" as="PEAR2/SimpleChannelServer/REST/Package.php"/>
+   <install name="php/PEAR2/SimpleChannelServer/REST/Release.php" as="PEAR2/SimpleChannelServer/REST/Release.php"/>
    <install name="script/pearscs" as="pearscs"/>
   </filelist>
  </phprelease>

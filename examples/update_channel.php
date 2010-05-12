@@ -21,16 +21,16 @@ foreach($categories as $category) {
     var_dump($category);
 }
 */
-$channel = new pear2\SimpleChannelServer\Channel('pear2.php.net','Brett Bieber\'s PEAR Channel','salty');
+$channel = new PEAR2\SimpleChannelServer\Channel('pear2.php.net','Brett Bieber\'s PEAR Channel','salty');
 
-//$scs = new pear2\SimpleChannelServer\Main($channel,'/Library/WebServer/Documents/pearserver','/home/bbieber/pyrus/php');
-$scs = new pear2\SimpleChannelServer\Main($channel,'/home/cellog/testapache/htdocs',\pear2\Pyrus\Config::current()->location);
-$categories = pear2\SimpleChannelServer\Categories::create('Default', 'This is the default category');
+//$scs = new PEAR2\SimpleChannelServer\Main($channel,'/Library/WebServer/Documents/pearserver','/home/bbieber/pyrus/php');
+$scs = new PEAR2\SimpleChannelServer\Main($channel,'/home/cellog/testapache/htdocs',\PEAR2\Pyrus\Config::current()->location);
+$categories = PEAR2\SimpleChannelServer\Categories::create('Default', 'This is the default category');
 $scs->saveChannel();
-$scs->saveRelease(new \pear2\Pyrus\Package(dirname(__FILE__) . '/../package.xml'), 'cellog');
+$scs->saveRelease(new \PEAR2\Pyrus\Package(dirname(__FILE__) . '/../package.xml'), 'cellog');
 echo 'did it'.PHP_EOL;
 /*
-$manager = new pear2\SimpleChannelServer\REST_Manager('/Library/WebServer/Documents/pearserver','pear2.php.net','rest/',array('cellog'));
-var_dump($manager->saveRelease(new \pear2\Pyrus\Package(dirname(__FILE__) . '/../package.xml'),'cellog'));
+$manager = new PEAR2\SimpleChannelServer\REST_Manager('/Library/WebServer/Documents/pearserver','pear2.php.net','rest/',array('cellog'));
+var_dump($manager->saveRelease(new \PEAR2\Pyrus\Package(dirname(__FILE__) . '/../package.xml'),'cellog'));
 */
 ?>

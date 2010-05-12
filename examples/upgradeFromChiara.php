@@ -25,7 +25,7 @@ $dirname = dirname(__FILE__).'/pearchannel/get/';
 $dir = new DirectoryIterator($dirname);
 foreach ($dir as $file) {
     if (!$file->isDot() && substr($file->getFilename(), -3) != 'tar') {
-        $scs->saveRelease(new \pear2\Pyrus\Package($dirname.$file->getFilename()), 'saltybeagle');
+        $scs->saveRelease(new \PEAR2\Pyrus\Package($dirname.$file->getFilename()), 'saltybeagle');
     }
 }
 

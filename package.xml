@@ -27,8 +27,8 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2009-12-19</date>
- <time>16:28:03</time>
+ <date>2010-04-01</date>
+ <time>10:17:41</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -52,7 +52,7 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
    <dir name="scripts" baseinstalldir="/">
     <file role="script" name="pearscs"/>
    </dir>
-   <dir name="src" baseinstalldir="pear2">
+   <dir name="src" baseinstalldir="PEAR2">
     <dir name="SimpleChannelServer">
      <dir name="Categories">
       <file role="php" name="Exception.php"/>

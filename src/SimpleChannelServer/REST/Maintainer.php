@@ -8,11 +8,11 @@
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
  */
-namespace pear2\SimpleChannelServer\REST;
-use pear2\SimpleChannelServer\Exception;
+namespace PEAR2\SimpleChannelServer\REST;
+use PEAR2\SimpleChannelServer\Exception;
 class Maintainer extends Manager
 {
-    function save(\pear2\Pyrus\Package $new)
+    function save(\PEAR2\Pyrus\Package $new)
     {
         foreach ($new->allmaintainers as $role => $maintainers) {
             foreach ($maintainers as $dev) {
@@ -50,7 +50,7 @@ class Maintainer extends Manager
     function getInfo($handle)
     {
         $path = $this->getRESTPath('m', strtolower($handle) . '/info.xml');
-        $reader = new \pear2\Pyrus\XMLParser;
+        $reader = new \PEAR2\Pyrus\XMLParser;
         if (!file_exists($path)) {
             return false;
         }

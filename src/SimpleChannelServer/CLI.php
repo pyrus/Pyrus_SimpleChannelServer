@@ -1,11 +1,11 @@
 <?php
-namespace pear2\SimpleChannelServer;
+namespace PEAR2\SimpleChannelServer;
 class CLI
 {
     /**
      * Channel object
      *
-     * @var \pear2\Pyrus\Channel
+     * @var \PEAR2\Pyrus\Channel
      */
     protected $channel;
     
@@ -21,7 +21,7 @@ class CLI
     /**
      * The simplechannelserver object
      * 
-     * @var pear2\SimpleChannelServer\Main
+     * @var PEAR2\SimpleChannelServer\Main
      */
     public $scs;
     
@@ -30,7 +30,7 @@ class CLI
         $channel_file = getcwd() . '/channel.xml';
         $this->dir = getcwd();
         if (file_exists($channel_file)) {
-            $this->channel = new \pear2\Pyrus\Channel(new \pear2\Pyrus\ChannelFile($channel_file));
+            $this->channel = new \PEAR2\Pyrus\Channel(new \PEAR2\Pyrus\ChannelFile($channel_file));
             $this->scs = new Main($this->channel, $this->dir);
         }
     }
@@ -176,15 +176,15 @@ class CLI
         if (null === $frontend) {
             $maintainer = $args;
         } else {
-            $chan = \pear2\Pyrus\Config::current()->default_channel;
-            \pear2\Pyrus\Config::current()->default_channel = $this->channel->name;
-            $maintainer = \pear2\Pyrus\Config::current()->handle;
-            \pear2\Pyrus\Config::current()->default_channel = $chan;
+            $chan = \PEAR2\Pyrus\Config::current()->default_channel;
+            \PEAR2\Pyrus\Config::current()->default_channel = $this->channel->name;
+            $maintainer = \PEAR2\Pyrus\Config::current()->handle;
+            \PEAR2\Pyrus\Config::current()->default_channel = $chan;
         }
         
         $dirname = $this->dir . '/get/';
         $dir = new \DirectoryIterator($dirname);
-        $errs = new \pear2\MultiErrors;
+        $errs = new \PEAR2\MultiErrors;
         foreach ($dir as $file) {
             if (!$file->isDot()
                 && !$file->isDir()
@@ -217,10 +217,10 @@ class CLI
     function pyrusRelease($frontend, $args)
     {
         if (null !== $frontend) {
-            $chan = \pear2\Pyrus\Config::current()->default_channel;
-            \pear2\Pyrus\Config::current()->default_channel = $this->channel->name;
-            $args['maintainer'] = \pear2\Pyrus\Config::current()->handle;
-            \pear2\Pyrus\Config::current()->default_channel = $chan;
+            $chan = \PEAR2\Pyrus\Config::current()->default_channel;
+            \PEAR2\Pyrus\Config::current()->default_channel = $this->channel->name;
+            $args['maintainer'] = \PEAR2\Pyrus\Config::current()->handle;
+            \PEAR2\Pyrus\Config::current()->default_channel = $chan;
         }
         $this->scs->saveRelease($args['path'], $args['maintainer']);
         echo 'Release successfully saved.'.PHP_EOL;

@@ -8,8 +8,8 @@
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
  */
-namespace pear2\SimpleChannelServer\REST;
-use pear2\SimpleChannelServer\Exception;
+namespace PEAR2\SimpleChannelServer\REST;
+use PEAR2\SimpleChannelServer\Exception;
 class Manager
 {
     /**
@@ -53,10 +53,10 @@ class Manager
     /**
      * Save release REST for a new package release.
      *
-     * @param \pear2\Pyrus\Package $release
+     * @param \PEAR2\Pyrus\Package $release
      * @param string              $releaser handle of person who is uploading this release
      */
-    function saveRelease(\pear2\Pyrus\Package $new, $releaser)
+    function saveRelease(\PEAR2\Pyrus\Package $new, $releaser)
     {
         if ($new->channel !== $this->chan) {
             throw new Exception('Cannot release ' .
@@ -64,7 +64,7 @@ class Manager
                 $this->chan . ' channel, and package is in ' .
                 $new->channel . ' channel');
         }
-        $categories = new \pear2\SimpleChannelServer\Categories($this->channel);
+        $categories = new \PEAR2\SimpleChannelServer\Categories($this->channel);
         $category = new Category($this->rest, $this->channel,
             $this->uri, $categories);
         $package = new Package($this->rest, $this->channel,
@@ -85,11 +85,11 @@ class Manager
      * Removes REST.  If $deleteorphaned is true, then
      * maintainers who no longer maintain a package will be
      * deleted from package maintainer REST.
-     * @param \pear2\Pyrus\Package $release
+     * @param \PEAR2\Pyrus\Package $release
      * @param string $deleter handle of maintainer deleting this release
      * @param bool $deleteorphaned
      */
-    function deleteRelease(\pear2\Pyrus\Package $release, $deleter, $deleteorphaned = true)
+    function deleteRelease(\PEAR2\Pyrus\Package $release, $deleter, $deleteorphaned = true)
     {
         if ($new->channel !== $this->chan) {
             throw new Exception('Cannot delete release ' .
@@ -175,7 +175,7 @@ class Manager
     {
         $this->_initDir($this->rest . '/' . $type . '/' . $path);
         if ($isxml) {
-            $contents = (string) new \pear2\Pyrus\XMLWriter($contents);
+            $contents = (string) new \PEAR2\Pyrus\XMLWriter($contents);
         }
         file_put_contents($this->rest . '/' . $type . '/' . $path, $contents);
         chmod($this->rest . '/' . $type . '/' . $path, 0666);

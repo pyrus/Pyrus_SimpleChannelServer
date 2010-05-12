@@ -2,7 +2,7 @@
 <commands version="2.0" xmlns="http://pear2.php.net/dtd/customcommand-2.0">
  <command>
   <name>scs-update</name>
-  <class>pear2\SimpleChannelServer\CLI</class>
+  <class>PEAR2\SimpleChannelServer\CLI</class>
   <function>pyrusUpdate</function>
   <autoloadpath/>
   <summary>Simple channel server: Update all releases of a within the get/ directory.</summary>
@@ -21,7 +21,7 @@ In addition, the handle configuration variable must be set to your handle
  </command>
  <command>
   <name>scs-create</name>
-  <class>pear2\SimpleChannelServer\CLI</class>
+  <class>PEAR2\SimpleChannelServer\CLI</class>
   <function>pyrusCreate</function>
   <autoloadpath/>
   <summary>Simple channel server: Create a channel.xml, get/ and rest/ directory for a channel</summary>
@@ -60,7 +60,7 @@ specified by the location of the channel.xml file.
  </command>
  <command>
   <name>scs-add-maintainer</name>
-  <class>pear2\SimpleChannelServer\CLI</class>
+  <class>PEAR2\SimpleChannelServer\CLI</class>
   <function>pyrusAddMaintainer</function>
   <autoloadpath/>
   <summary>Simple Channel Server: Add a new maintaing developer to the channel</summary>
@@ -93,7 +93,7 @@ to be listed prior to making their first release.
  </command>
  <command>
   <name>scs-add-category</name>
-  <class>pear2\SimpleChannelServer\CLI</class>
+  <class>PEAR2\SimpleChannelServer\CLI</class>
   <function>pyrusAddCategory</function>
   <autoloadpath/>
   <summary>Simple Channel Server: Add a new category to the channel</summary>
@@ -120,7 +120,7 @@ command to create a new category.
  </command>
  <command>
   <name>scs-categorize</name>
-  <class>pear2\SimpleChannelServer\CLI</class>
+  <class>PEAR2\SimpleChannelServer\CLI</class>
   <function>pyrusCategorize</function>
   <autoloadpath/>
   <summary>Simple Channel Server: Categorize a package</summary>
@@ -146,7 +146,7 @@ Use this command to add a package to a category.
  </command>
  <command>
   <name>scs-release</name>
-  <class>pear2\SimpleChannelServer\CLI</class>
+  <class>PEAR2\SimpleChannelServer\CLI</class>
   <function>pyrusRelease</function>
   <autoloadpath/>
   <summary>Simple Channel Server: Release a package</summary>

@@ -22,6 +22,6 @@ function pyrus_autoload($class)
     }
 }
 spl_autoload_register("pyrus_autoload");
-$cli = new \pear2\SimpleChannelServer\CLI();
+$cli = new \PEAR2\SimpleChannelServer\CLI();
 $cli->process();
 __HALT_COMPILER();

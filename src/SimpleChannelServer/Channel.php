@@ -8,8 +8,8 @@
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
  */
-namespace pear2\SimpleChannelServer;
-class Channel extends \pear2\Pyrus\ChannelFile
+namespace PEAR2\SimpleChannelServer;
+class Channel extends \PEAR2\Pyrus\ChannelFile
 {
     
     function __construct($name, $summary, $suggestedalias = null, $restpath = 'rest/')

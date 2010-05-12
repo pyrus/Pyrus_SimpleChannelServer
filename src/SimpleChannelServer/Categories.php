@@ -13,7 +13,7 @@
  *          create('Name4', 'Description 4');
  *      file_put_contents('/path/to/serialize/categories.inf', serialize($cat));
  * }
- * $categories = pear2\SimpleChannelServer\Categories::getCategories();
+ * $categories = PEAR2\SimpleChannelServer\Categories::getCategories();
  * $categories->link('SimpleChannelServer', 'Developer');
  * </code>
  *
@@ -23,7 +23,7 @@
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
  */
-namespace pear2\SimpleChannelServer;
+namespace PEAR2\SimpleChannelServer;
 class Categories
 {
     /**
@@ -37,7 +37,7 @@ class Categories
     
     protected $channel;
 
-    public function __construct(\pear2\Pyrus\Channel $channel)
+    public function __construct(\PEAR2\Pyrus\Channel $channel)
     {
         $this->channel = $channel;
         $rest = preg_replace('/https?:\/\/' . str_replace('/','\/', $channel->name) . '/',
@@ -54,7 +54,7 @@ class Categories
             if (!$fileinfo->isDot()
                 && $fileinfo->isDir()
                 && substr($fileinfo->getFilename(), 0, 1) != '.') {
-                $parser = new \pear2\Pyrus\XMLParser;
+                $parser = new \PEAR2\Pyrus\XMLParser;
                 try {
                     $content = file_get_contents($fileinfo->getPathname().'/info.xml');
                     $content = $parser->parseString($content);
@@ -83,7 +83,7 @@ class Categories
      * @param string $description Description of the category
      * @param string $alias       Alias of the category
      * 
-     * @return pear2\SimpleChannelServer\Categories
+     * @return PEAR2\SimpleChannelServer\Categories
      */
     public function create($name, $description, $alias = null)
     {
@@ -162,7 +162,7 @@ class Categories
         $packages = array();
         $file = $this->_restDir.'c/'.urlencode($category).'/packages.xml';
         if (file_exists($file)) {
-            $parser = new \pear2\Pyrus\XMLParser;
+            $parser = new \PEAR2\Pyrus\XMLParser;
             try {
                 $content = file_get_contents($file);
                 $content = $parser->parseString($content);

@@ -8,7 +8,7 @@
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
  */
-namespace pear2\SimpleChannelServer;
+namespace PEAR2\SimpleChannelServer;
 class Main
 {
     /**
@@ -32,21 +32,21 @@ class Main
     /**
      * REST manager
      *
-     * @var pear2\SimpleChannelServer\REST\Manager
+     * @var PEAR2\SimpleChannelServer\REST\Manager
      */
     protected $rest;
 
     /**
      * GET manager
      *
-     * @var pear2\SimpleChannelServer\Get
+     * @var PEAR2\SimpleChannelServer\Get
      */
     protected $get;
 
     /**
      * Construct simple channel server
      *
-     * @param pear2\SimpleChannelServer\Channel $channel   channel object
+     * @param PEAR2\SimpleChannelServer\Channel $channel   channel object
      * @param string $webpath   full path to web files eg: /var/www/pear/
      * @param string $pyruspath Path to the pyrus controlled PEAR installation
      */
@@ -78,7 +78,7 @@ class Main
                                            $restpath);
         $this->get      = new Get($webpath.'/get', $pyruspath);
         try {
-            $a = \pear2\Pyrus\Config::singleton($pyruspath);
+            $a = \PEAR2\Pyrus\Config::singleton($pyruspath);
         } catch (Exception $e) {
             throw new Exception('Cannot initialize Pyrus Config',
                 $e);
@@ -99,7 +99,7 @@ class Main
 
     function saveRelease($package, $releaser)
     {
-        $rest = $this->rest->saveRelease(new \pear2\Pyrus\Package($package), $releaser);
+        $rest = $this->rest->saveRelease(new \PEAR2\Pyrus\Package($package), $releaser);
         $get  = $this->get->saveRelease($package, $releaser);
         return $rest && $get;
     }
@@ -197,7 +197,7 @@ class Main
                     $e);
             }
         }
-        $reader = new \pear2\Pyrus\XMLParser;
+        $reader = new \PEAR2\Pyrus\XMLParser;
         $path   = $this->rest->getRESTPath('r', strtolower($package) . '/maintainers2.xml');
         if (!file_exists($path)) {
             return array();

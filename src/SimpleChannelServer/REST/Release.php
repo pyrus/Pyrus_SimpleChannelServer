@@ -8,19 +8,19 @@
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
  */
-namespace pear2\SimpleChannelServer\REST;
-use pear2\SimpleChannelServer\Categories;
+namespace PEAR2\SimpleChannelServer\REST;
+use PEAR2\SimpleChannelServer\Categories;
 class Release extends Manager
 {
     /**
      * Save a package release's REST information
      *
-     * @param \pear2\Pyrus\Package $new      new package to be released
+     * @param \PEAR2\Pyrus\Package $new      new package to be released
      * @param string              $releaser handle of the maintainer who released this package
      *
      * @return void
      */
-    function save(\pear2\Pyrus\Package $new, $releaser)
+    function save(\PEAR2\Pyrus\Package $new, $releaser)
     {
         $this->saveInfo($new, $releaser);
         $this->saveInfo2($new, $releaser);
@@ -34,11 +34,11 @@ class Release extends Manager
     /**
      * Delete a release from REST information
      *
-     * @param \pear2\Pyrus\Package $new Package to be erased
+     * @param \PEAR2\Pyrus\Package $new Package to be erased
      *
      * @return void
      */
-    function erase(\pear2\Pyrus\Package $new)
+    function erase(\PEAR2\Pyrus\Package $new)
     {
         $this->saveAll($new, true);
         $xml = $this->saveAll2($new, true);
@@ -73,12 +73,12 @@ class Release extends Manager
     /**
      * save rest.release release REST
      *
-     * @param \pear2\Pyrus\Package $new      package to save info for
+     * @param \PEAR2\Pyrus\Package $new      package to save info for
      * @param string              $releaser releasing maintainer's handle
      *
      * @return void
      */
-    function saveInfo(\pear2\Pyrus\Package $new, $releaser)
+    function saveInfo(\PEAR2\Pyrus\Package $new, $releaser)
     {
         $xml            = $this->_getProlog('r', 'release');
         $xml['r']['p']  = array(
@@ -111,12 +111,12 @@ class Release extends Manager
     /**
      * save rest.release2 release REST
      *
-     * @param \pear2\Pyrus\Package $new      package to be saved
+     * @param \PEAR2\Pyrus\Package $new      package to be saved
      * @param string              $releaser releasing maintainer's handle
      *
      * @return void
      */
-    function saveInfo2(\pear2\Pyrus\Package $new, $releaser)
+    function saveInfo2(\PEAR2\Pyrus\Package $new, $releaser)
     {
         $xml            = $this->_getProlog('r', 'release2');
         $xml['r']['p']  = array(
@@ -151,11 +151,11 @@ class Release extends Manager
     /**
      * Save a release's package.xml contents
      *
-     * @param \pear2\Pyrus\Package $new package to be saved
+     * @param \PEAR2\Pyrus\Package $new package to be saved
      *
      * @return void
      */
-    function savePackageXml(\pear2\Pyrus\Package $new)
+    function savePackageXml(\PEAR2\Pyrus\Package $new)
     {
         $this->saveReleaseREST(strtolower($new->name) . '/package.' .
             $new->version['release'] . '.xml', file_get_contents($new->packagefile),
@@ -165,11 +165,11 @@ class Release extends Manager
     /**
      * Save a serialized representation of a package's dependencies
      *
-     * @param \pear2\Pyrus\Package $new package to be saved
+     * @param \PEAR2\Pyrus\Package $new package to be saved
      *
      * @return void
      */
-    function savePackageDeps(\pear2\Pyrus\Package $new)
+    function savePackageDeps(\PEAR2\Pyrus\Package $new)
     {
         $this->saveReleaseREST(strtolower($new->name) . '/deps.' .
             $new->version['release'] . '.txt', serialize($new->rawdeps),
@@ -179,20 +179,20 @@ class Release extends Manager
     /**
      * save REST information for all releases of this package
      *
-     * @param \pear2\Pyrus\Package $new   package to save all release info for
+     * @param \PEAR2\Pyrus\Package $new   package to save all release info for
      * @param bool                $erase if true, the release represented by the
      *                                   version of $new will be removed.
      *
      * @return void
      */
-    function saveAll(\pear2\Pyrus\Package $new, $erase = false, $is2 = false)
+    function saveAll(\PEAR2\Pyrus\Package $new, $erase = false, $is2 = false)
     {
         if ($is2) {
             $is2 = '2';
         } else {
             $is2 = '';
         }
-        $reader = new \pear2\Pyrus\XMLParser;
+        $reader = new \PEAR2\Pyrus\XMLParser;
         $path   = $this->getRESTPath('r', strtolower($new->name) .
             DIRECTORY_SEPARATOR . 'allreleases' . $is2 . '.xml');
         if (file_exists($path)) {
@@ -293,13 +293,13 @@ class Release extends Manager
     /**
      * save REST information for all releases (version 2) of this package
      *
-     * @param \pear2\Pyrus\Package $new   package to save all releases for
+     * @param \PEAR2\Pyrus\Package $new   package to save all releases for
      * @param bool                $erase if true, the release represented by the
      *                                   version of $new will be removed.
      *
      * @return void
      */
-    function saveAll2(\pear2\Pyrus\Package $new, $erase = false)
+    function saveAll2(\PEAR2\Pyrus\Package $new, $erase = false)
     {
         return $this->saveAll($new, $erase, true);
     }
@@ -307,11 +307,11 @@ class Release extends Manager
     /**
      * save REST stability version info in .txt files
      *
-     * @param \pear2\Pyrus\Package $new package to save stability for
+     * @param \PEAR2\Pyrus\Package $new package to save stability for
      *
      * @return void
      */
-    function saveStability(\pear2\Pyrus\Package $new)
+    function saveStability(\PEAR2\Pyrus\Package $new)
     {
         $this->saveReleaseREST(strtolower($new->name) . '/latest.txt',
             $new->version['release'], false);

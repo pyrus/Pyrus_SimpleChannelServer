@@ -8,8 +8,8 @@
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
  */
-namespace pear2\SimpleChannelServer\REST;
-use pear2\SimpleChannelServer\Categories;
+namespace PEAR2\SimpleChannelServer\REST;
+use PEAR2\SimpleChannelServer\Categories;
 class Category extends Manager
 {
     protected $_categories;
@@ -30,11 +30,11 @@ class Category extends Manager
     /**
      * Save a package release's REST-related information
      *
-     * @param \pear2\Pyrus\Package $new Package to save category for
+     * @param \PEAR2\Pyrus\Package $new Package to save category for
      * 
      * @return void
      */
-    function save(\pear2\Pyrus\Package $new)
+    function save(\PEAR2\Pyrus\Package $new)
     {
         $category = $this->_categories->getPackageCategory($new->name);
         $this->savePackages($category);
@@ -45,11 +45,11 @@ class Category extends Manager
     /**
      * Delete a package release's REST-related information
      *
-     * @param \pear2\Pyrus\Package $new Package to rease rest info for
+     * @param \PEAR2\Pyrus\Package $new Package to rease rest info for
      * 
      * @return void
      */
-    function erase(\pear2\Pyrus\Package $new)
+    function erase(\PEAR2\Pyrus\Package $new)
     {
         $category = $this->_categories->getPackageCategory($new->name);
         $this->savePackagesInfo($category);
@@ -138,7 +138,7 @@ class Category extends Manager
         $pdir = $this->rest . DIRECTORY_SEPARATOR . 'p';
         $rdir = $this->rest . DIRECTORY_SEPARATOR . 'r';
         $packages = $this->_categories->packagesInCategory($category);
-        $reader   = new \pear2\Pyrus\XMLParser;
+        $reader   = new \PEAR2\Pyrus\XMLParser;
         clearstatcache();
         $xml['pi'] = array();
         foreach ($packages as $package) {
