@@ -27,8 +27,8 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2010-04-01</date>
- <time>10:17:41</time>
+ <date>2010-06-10</date>
+ <time>10:49:15</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -39,6 +39,9 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">New BSD License</license>
  <notes>First attempt.
+
+Namespace of PEAR2.
+Basic functionality including categories working.
 </notes>
  <contents>
   <dir name="/">
