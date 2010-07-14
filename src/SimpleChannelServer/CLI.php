@@ -25,14 +25,18 @@ class CLI
      */
     public $scs;
     
-    public function __construct()
+    public function getSCS()
     {
-        $channel_file = getcwd() . '/channel.xml';
-        $this->dir = getcwd();
-        if (file_exists($channel_file)) {
+        if (!isset($this->scs)) {
+            $channel_file = getcwd() . '/channel.xml';
+            $this->dir = getcwd();
+            if (!file_exists($channel_file)) {
+                throw new Exception('No channel.xml file could be found! Create the channel, or change to the directory with the channel.xml.');
+            }
             $this->channel = new \PEAR2\Pyrus\Channel(new \PEAR2\Pyrus\ChannelFile($channel_file));
             $this->scs = new Main($this->channel, $this->dir);
         }
+        return $this->scs;
     }
     
     public function process()
@@ -76,13 +80,13 @@ class CLI
         $args = array();
         $args['package'] = $_SERVER['argv'][2];
         $args['category'] = $_SERVER['argv'][3];
-        $this->scs->categorize($args['package'], $args['category']);
+        $this->getSCS()->categorize($args['package'], $args['category']);
         echo "Added  {$args['package']} to {$args['category']} \n";
     }
     
     function pyrusCategorize($frontend, $args)
     {
-        $this->scs->categorize($args['package'], $args['category']);
+        $this->getSCS()->categorize($args['package'], $args['category']);
         echo "Added  {$args['package']} to {$args['category']} \n";
     }
     
@@ -107,6 +111,7 @@ class CLI
         $args['description'] = (isset($_SERVER['argv'][3]))?
                                     $_SERVER['argv'][3]:$_SERVER['argv'][2];
 
+        $this->getSCS();
         $categories = new Categories($this->channel);
         $categories->create($args['category'], $args['description']);
         $category = new REST\Category($this->dir . '/rest', $this->channel, 'rest/', $categories);
@@ -122,6 +127,7 @@ class CLI
                                 'scs-create command first');
         }
 
+        $this->getSCS();
         $categories = new Categories($this->channel);
         $categories->create($args['category'], $args['description']);
         $category->savePackagesInfo($args['category']);
@@ -139,10 +145,7 @@ class CLI
 
     function pyrusAddMaintainer($frontend, $args)
     {
-        if (!isset($this->channel)) {
-            throw new Exception('Unknown channel, run the ' .
-                                'scs-create command first');
-        }
+        $this->getSCS();
         $maintainer = new REST\Maintainer($this->dir . '/rest', $this->channel->name);
         if (isset($args['uri'])) {
             $uri = $args['uri'];
@@ -169,10 +172,7 @@ class CLI
 
     function pyrusUpdate($frontend, $args)
     {
-        if (!isset($this->channel)) {
-            throw new Exception('Unknown channel, run the ' .
-                                'scs-create command first');
-        }
+        $this->getSCS();
         if (null === $frontend) {
             $maintainer = $args;
         } else {
@@ -216,6 +216,7 @@ class CLI
 
     function pyrusRelease($frontend, $args)
     {
+        $this->getSCS();
         if (null !== $frontend) {
             $chan = \PEAR2\Pyrus\Config::current()->default_channel;
             \PEAR2\Pyrus\Config::current()->default_channel = $this->channel->name;
