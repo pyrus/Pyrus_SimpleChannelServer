@@ -64,14 +64,16 @@ class Main
         }
         $rest = $channel->protocols->rest;
         foreach ($rest as $restpath) {
-            $restpath = str_replace('http://'.$channel->name.'/', '', $restpath);
-            break;
+        	if (preg_match('/https?:\/\/'.$channel->name.'\//', $restpath, $matches)) {
+        		$this->uri = $matches[0];
+                $restpath  = str_replace($matches[0], '', $restpath);
+                break;
+        	}
         }
         if (dirname($restpath . 'a') . '/' !== $restpath) {
             $restpath .= '/';
         }
         $this->restpath = $webpath.'/'.$restpath;
-        $this->uri      = 'http://' . $channel->name . '/';
         $this->channel  = $channel;
         $this->rest     = new REST\Manager($this->restpath,
                                            $channel,
