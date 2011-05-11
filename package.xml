@@ -27,10 +27,10 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2010-06-10</date>
- <time>10:49:14</time>
+ <date>2011-05-11</date>
+ <time>18:21:17</time>
  <version>
-  <release>0.1.0</release>
+  <release>0.2.0</release>
   <api>0.1.0</api>
  </version>
  <stability>
@@ -38,11 +38,9 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
   <api>alpha</api>
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">New BSD License</license>
- <notes>First attempt.
+ <notes>Fixes:
 
-Namespace of PEAR2.
-Basic functionality including categories working.
-</notes>
+ - Add support for channels using https [saltybeagle]</notes>
  <contents>
   <dir name="/">
    <dir name="customcommand" baseinstalldir="/">
@@ -55,24 +53,26 @@ Basic functionality including categories working.
    <dir name="scripts" baseinstalldir="/">
     <file role="script" name="pearscs"/>
    </dir>
-   <dir name="src" baseinstalldir="PEAR2">
-    <dir name="SimpleChannelServer">
-     <dir name="Categories">
+   <dir name="src" baseinstalldir="/">
+    <dir name="PEAR2">
+     <dir name="SimpleChannelServer">
+      <dir name="Categories">
+       <file role="php" name="Exception.php"/>
+      </dir>
+      <dir name="REST">
+       <file role="php" name="Category.php"/>
+       <file role="php" name="Maintainer.php"/>
+       <file role="php" name="Manager.php"/>
+       <file role="php" name="Package.php"/>
+       <file role="php" name="Release.php"/>
+      </dir>
+      <file role="php" name="Categories.php"/>
+      <file role="php" name="Channel.php"/>
+      <file role="php" name="CLI.php"/>
       <file role="php" name="Exception.php"/>
+      <file role="php" name="Get.php"/>
+      <file role="php" name="Main.php"/>
      </dir>
-     <dir name="REST">
-      <file role="php" name="Category.php"/>
-      <file role="php" name="Maintainer.php"/>
-      <file role="php" name="Manager.php"/>
-      <file role="php" name="Package.php"/>
-      <file role="php" name="Release.php"/>
-     </dir>
-     <file role="php" name="Categories.php"/>
-     <file role="php" name="Channel.php"/>
-     <file role="php" name="CLI.php"/>
-     <file role="php" name="Exception.php"/>
-     <file role="php" name="Get.php"/>
-     <file role="php" name="Main.php"/>
     </dir>
    </dir>
   </dir>

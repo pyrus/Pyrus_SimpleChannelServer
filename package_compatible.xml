@@ -27,10 +27,10 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2010-06-10</date>
- <time>10:49:15</time>
+ <date>2011-05-11</date>
+ <time>18:21:17</time>
  <version>
-  <release>0.1.0</release>
+  <release>0.2.0</release>
   <api>0.1.0</api>
  </version>
  <stability>
@@ -38,11 +38,9 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
   <api>alpha</api>
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">New BSD License</license>
- <notes>First attempt.
+ <notes>Fixes:
 
-Namespace of PEAR2.
-Basic functionality including categories working.
-</notes>
+ - Add support for channels using https [saltybeagle]</notes>
  <contents>
   <dir name="/">
    <file role="script" name="script/pearscs"/>
@@ -58,9 +56,9 @@ Basic functionality including categories working.
    <file role="php" name="php/PEAR2/SimpleChannelServer/Channel.php"/>
    <file role="php" name="php/PEAR2/SimpleChannelServer/Categories/Exception.php"/>
    <file role="php" name="php/PEAR2/SimpleChannelServer/Categories.php"/>
-   <file role="doc" name="doc/PEAR2_SimpleChannelServer/pear2.php.net/examples/examples/upgradeFromChiara.php"/>
-   <file role="doc" name="doc/PEAR2_SimpleChannelServer/pear2.php.net/examples/examples/update_channel.php"/>
-   <file role="data" name="customcommand/PEAR2_SimpleChannelServer/pear2.php.net/commands.xml"/>
+   <file role="doc" name="doc/pear2.php.net/PEAR2_SimpleChannelServer/examples/examples/upgradeFromChiara.php"/>
+   <file role="doc" name="doc/pear2.php.net/PEAR2_SimpleChannelServer/examples/examples/update_channel.php"/>
+   <file role="data" name="customcommand/pear2.php.net/PEAR2_SimpleChannelServer/commands.xml"/>
   </dir>
  </contents>
  <dependencies>
@@ -83,9 +81,9 @@ Basic functionality including categories working.
  </dependencies>
  <phprelease>
   <filelist>
-   <install name="customcommand/PEAR2_SimpleChannelServer/pear2.php.net/commands.xml" as="pear2.php.net/commands.xml"/>
-   <install name="doc/PEAR2_SimpleChannelServer/pear2.php.net/examples/examples/update_channel.php" as="pear2.php.net/examples/examples/update_channel.php"/>
-   <install name="doc/PEAR2_SimpleChannelServer/pear2.php.net/examples/examples/upgradeFromChiara.php" as="pear2.php.net/examples/examples/upgradeFromChiara.php"/>
+   <install name="customcommand/pear2.php.net/PEAR2_SimpleChannelServer/commands.xml" as="PEAR2_SimpleChannelServer/commands.xml"/>
+   <install name="doc/pear2.php.net/PEAR2_SimpleChannelServer/examples/examples/update_channel.php" as="PEAR2_SimpleChannelServer/examples/examples/update_channel.php"/>
+   <install name="doc/pear2.php.net/PEAR2_SimpleChannelServer/examples/examples/upgradeFromChiara.php" as="PEAR2_SimpleChannelServer/examples/examples/upgradeFromChiara.php"/>
    <install name="php/PEAR2/SimpleChannelServer/Categories.php" as="PEAR2/SimpleChannelServer/Categories.php"/>
    <install name="php/PEAR2/SimpleChannelServer/Categories/Exception.php" as="PEAR2/SimpleChannelServer/Categories/Exception.php"/>
    <install name="php/PEAR2/SimpleChannelServer/Channel.php" as="PEAR2/SimpleChannelServer/Channel.php"/>
