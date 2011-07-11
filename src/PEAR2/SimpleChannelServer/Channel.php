@@ -9,7 +9,7 @@
  * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
  */
 namespace PEAR2\SimpleChannelServer;
-class Channel extends \PEAR2\Pyrus\ChannelFile
+class Channel extends \Pyrus\ChannelFile
 {
     
     function __construct($name, $summary, $suggestedalias = null, $restpath = 'rest/')

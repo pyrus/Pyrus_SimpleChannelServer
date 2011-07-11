@@ -12,7 +12,7 @@ namespace PEAR2\SimpleChannelServer\REST;
 use PEAR2\SimpleChannelServer\Exception;
 class Maintainer extends Manager
 {
-    function save(\PEAR2\Pyrus\Package $new)
+    function save(\Pyrus\Package $new)
     {
         foreach ($new->allmaintainers as $role => $maintainers) {
             foreach ($maintainers as $dev) {
@@ -50,7 +50,7 @@ class Maintainer extends Manager
     function getInfo($handle)
     {
         $path = $this->getRESTPath('m', strtolower($handle) . '/info.xml');
-        $reader = new \PEAR2\Pyrus\XMLParser;
+        $reader = new \Pyrus\XMLParser;
         if (!file_exists($path)) {
             return false;
         }
