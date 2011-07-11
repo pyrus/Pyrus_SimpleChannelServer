@@ -53,10 +53,10 @@ class Manager
     /**
      * Save release REST for a new package release.
      *
-     * @param \PEAR2\Pyrus\Package $release
+     * @param \Pyrus\Package $release
      * @param string              $releaser handle of person who is uploading this release
      */
-    function saveRelease(\PEAR2\Pyrus\Package $new, $releaser)
+    function saveRelease(\Pyrus\Package $new, $releaser)
     {
         if ($new->channel !== $this->chan) {
             throw new Exception('Cannot release ' .
@@ -85,11 +85,11 @@ class Manager
      * Removes REST.  If $deleteorphaned is true, then
      * maintainers who no longer maintain a package will be
      * deleted from package maintainer REST.
-     * @param \PEAR2\Pyrus\Package $release
+     * @param \Pyrus\Package $release
      * @param string $deleter handle of maintainer deleting this release
      * @param bool $deleteorphaned
      */
-    function deleteRelease(\PEAR2\Pyrus\Package $release, $deleter, $deleteorphaned = true)
+    function deleteRelease(\Pyrus\Package $release, $deleter, $deleteorphaned = true)
     {
         if ($new->channel !== $this->chan) {
             throw new Exception('Cannot delete release ' .
@@ -175,7 +175,7 @@ class Manager
     {
         $this->_initDir($this->rest . '/' . $type . '/' . $path);
         if ($isxml) {
-            $contents = (string) new \PEAR2\Pyrus\XMLWriter($contents);
+            $contents = (string) new \Pyrus\XMLWriter($contents);
         }
         file_put_contents($this->rest . '/' . $type . '/' . $path, $contents);
         chmod($this->rest . '/' . $type . '/' . $path, 0666);

@@ -80,7 +80,7 @@ class Main
                                            $restpath);
         $this->get      = new Get($webpath.'/get', $pyruspath);
         try {
-            $a = \PEAR2\Pyrus\Config::singleton($pyruspath);
+            $a = \Pyrus\Config::singleton($pyruspath);
         } catch (Exception $e) {
             throw new Exception('Cannot initialize Pyrus Config',
                 $e);
@@ -101,7 +101,7 @@ class Main
 
     function saveRelease($package, $releaser)
     {
-        $rest = $this->rest->saveRelease(new \PEAR2\Pyrus\Package($package), $releaser);
+        $rest = $this->rest->saveRelease(new \Pyrus\Package($package), $releaser);
         $get  = $this->get->saveRelease($package, $releaser);
         return $rest && $get;
     }
@@ -199,7 +199,7 @@ class Main
                     $e);
             }
         }
-        $reader = new \PEAR2\Pyrus\XMLParser;
+        $reader = new \Pyrus\XMLParser;
         $path   = $this->rest->getRESTPath('r', strtolower($package) . '/maintainers2.xml');
         if (!file_exists($path)) {
             return array();

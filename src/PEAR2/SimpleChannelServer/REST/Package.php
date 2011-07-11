@@ -20,9 +20,9 @@ class Package extends Manager
     /**
      * Save package REST based on a release
      *
-     * @param \PEAR2\Pyrus\package $new
+     * @param \Pyrus\package $new
      */
-    function save(\PEAR2\Pyrus\Package $new)
+    function save(\Pyrus\Package $new)
     {
         $this->_packages[$new->name] = true;
         $this->saveInfo($new);
@@ -34,9 +34,9 @@ class Package extends Manager
      * Remove package REST based on a release
      *
      * This does nothing
-     * @param \PEAR2\Pyrus\package $new
+     * @param \Pyrus\package $new
      */
-    function erase(\PEAR2\Pyrus\Package $new)
+    function erase(\Pyrus\Package $new)
     {
     }
 
@@ -76,11 +76,11 @@ class Package extends Manager
     /**
      * Save package REST based on a release
      * 
-     * @param \PEAR2\Pyrus\Package $new
+     * @param \Pyrus\Package $new
      */
-    function saveInfo(\PEAR2\Pyrus\Package $new)
+    function saveInfo(\Pyrus\Package $new)
     {
-        $reader = new \PEAR2\Pyrus\XMLParser;
+        $reader = new \Pyrus\XMLParser;
         $deprecated = false;
         if (file_exists($this->rest . DIRECTORY_SEPARATOR . 'p' . DIRECTORY_SEPARATOR .
               'info.xml')) {
@@ -140,11 +140,11 @@ class Package extends Manager
     /**
      * Save package maintainers information for this release
      *
-     * @param \PEAR2\Pyrus\Package $new package to be saved
+     * @param \Pyrus\Package $new package to be saved
      *
      * @return void
      */
-    function saveMaintainers(\PEAR2\Pyrus\Package $new)
+    function saveMaintainers(\Pyrus\Package $new)
     {
         $m  = $this->_getProlog('m', 'packagemaintainers');
         $m2 = $this->_getProlog('m', 'packagemaintainers2');
