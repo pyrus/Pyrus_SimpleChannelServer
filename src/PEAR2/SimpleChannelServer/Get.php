@@ -21,7 +21,7 @@ class Get
     function saveRelease($new, $releaser)
     {
         $parts = pathinfo($new);
-        $cloner = new \PEAR2\Pyrus\Package\Cloner($new, $this->get);
+        $cloner = new \Pyrus\Package\Cloner($new, $this->get);
         if (!file_exists($this->get.$parts['filename'].'.tar')) {
             $cloner->toTar();
         }
@@ -37,7 +37,7 @@ class Get
         return true; 
     }
 
-    function deleteRelease(\PEAR2\Pyrus\Package $release)
+    function deleteRelease(\Pyrus\Package $release)
     {
 
     }

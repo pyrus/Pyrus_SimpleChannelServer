@@ -37,7 +37,7 @@ class Categories
     
     protected $channel;
 
-    public function __construct(\PEAR2\Pyrus\Channel $channel)
+    public function __construct(\Pyrus\Channel $channel)
     {
         $this->channel = $channel;
         $rest = preg_replace('/https?:\/\/' . str_replace('/','\/', $channel->name) . '/',
@@ -54,7 +54,7 @@ class Categories
             if (!$fileinfo->isDot()
                 && $fileinfo->isDir()
                 && substr($fileinfo->getFilename(), 0, 1) != '.') {
-                $parser = new \PEAR2\Pyrus\XMLParser;
+                $parser = new \Pyrus\XMLParser;
                 try {
                     $content = file_get_contents($fileinfo->getPathname().'/info.xml');
                     $content = $parser->parseString($content);
@@ -162,7 +162,7 @@ class Categories
         $packages = array();
         $file = $this->_restDir.'c/'.urlencode($category).'/packages.xml';
         if (file_exists($file)) {
-            $parser = new \PEAR2\Pyrus\XMLParser;
+            $parser = new \Pyrus\XMLParser;
             try {
                 $content = file_get_contents($file);
                 $content = $parser->parseString($content);
