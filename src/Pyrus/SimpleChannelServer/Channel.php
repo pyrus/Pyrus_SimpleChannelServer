@@ -3,12 +3,12 @@
  * Channel writer for simple channel server.
  *
  * @category Developer
- * @package  PEAR2_SimpleChannelServer
+ * @package  Pyrus_SimpleChannelServer
  * @author   Brett Bieber <brett.bieber@gmail.com>
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
+ * @link     https://github.com/pyrus/Pyrus_SimpleChannelServer
  */
-namespace PEAR2\SimpleChannelServer;
+namespace Pyrus\SimpleChannelServer;
 class Channel extends \Pyrus\ChannelFile
 {
     

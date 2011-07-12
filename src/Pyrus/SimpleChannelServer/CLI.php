@@ -1,5 +1,5 @@
 <?php
-namespace PEAR2\SimpleChannelServer;
+namespace Pyrus\SimpleChannelServer;
 class CLI
 {
     /**
@@ -21,7 +21,7 @@ class CLI
     /**
      * The simplechannelserver object
      * 
-     * @var PEAR2\SimpleChannelServer\Main
+     * @var Pyrus\SimpleChannelServer\Main
      */
     public $scs;
     
