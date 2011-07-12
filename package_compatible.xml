@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package version="2.1" xmlns="http://pear.php.net/dtd/package-2.1" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.1     http://pear.php.net/dtd/package-2.1.xsd">
- <name>PEAR2_SimpleChannelServer</name>
+ <name>Pyrus_SimpleChannelServer</name>
  <channel>pear2.php.net</channel>
  <summary>A simple channel server for PEAR compatible channels
 </summary>
@@ -54,9 +54,9 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
    <file role="php" name="php/PEAR2/SimpleChannelServer/Channel.php"/>
    <file role="php" name="php/PEAR2/SimpleChannelServer/Categories/Exception.php"/>
    <file role="php" name="php/PEAR2/SimpleChannelServer/Categories.php"/>
-   <file role="doc" name="doc/pear2.php.net/PEAR2_SimpleChannelServer/examples/examples/upgradeFromChiara.php"/>
-   <file role="doc" name="doc/pear2.php.net/PEAR2_SimpleChannelServer/examples/examples/update_channel.php"/>
-   <file role="data" name="customcommand/pear2.php.net/PEAR2_SimpleChannelServer/commands.xml"/>
+   <file role="doc" name="doc/pear2.php.net/Pyrus_SimpleChannelServer/examples/examples/upgradeFromChiara.php"/>
+   <file role="doc" name="doc/pear2.php.net/Pyrus_SimpleChannelServer/examples/examples/update_channel.php"/>
+   <file role="data" name="customcommand/pear2.php.net/Pyrus_SimpleChannelServer/commands.xml"/>
   </dir>
  </contents>
  <dependencies>
@@ -80,9 +80,9 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
  </dependencies>
  <phprelease>
   <filelist>
-   <install name="customcommand/pear2.php.net/PEAR2_SimpleChannelServer/commands.xml" as="PEAR2_SimpleChannelServer/commands.xml"/>
-   <install name="doc/pear2.php.net/PEAR2_SimpleChannelServer/examples/examples/update_channel.php" as="PEAR2_SimpleChannelServer/examples/examples/update_channel.php"/>
-   <install name="doc/pear2.php.net/PEAR2_SimpleChannelServer/examples/examples/upgradeFromChiara.php" as="PEAR2_SimpleChannelServer/examples/examples/upgradeFromChiara.php"/>
+   <install name="customcommand/pear2.php.net/Pyrus_SimpleChannelServer/commands.xml" as="Pyrus_SimpleChannelServer/commands.xml"/>
+   <install name="doc/pear2.php.net/Pyrus_SimpleChannelServer/examples/examples/update_channel.php" as="Pyrus_SimpleChannelServer/examples/examples/update_channel.php"/>
+   <install name="doc/pear2.php.net/Pyrus_SimpleChannelServer/examples/examples/upgradeFromChiara.php" as="Pyrus_SimpleChannelServer/examples/examples/upgradeFromChiara.php"/>
    <install name="php/PEAR2/SimpleChannelServer/Categories.php" as="PEAR2/SimpleChannelServer/Categories.php"/>
    <install name="php/PEAR2/SimpleChannelServer/Categories/Exception.php" as="PEAR2/SimpleChannelServer/Categories/Exception.php"/>
    <install name="php/PEAR2/SimpleChannelServer/Channel.php" as="PEAR2/SimpleChannelServer/Channel.php"/>

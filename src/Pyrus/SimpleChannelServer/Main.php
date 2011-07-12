@@ -235,7 +235,7 @@ class Main
      * List release info with dependencies formatted for easy processing
      * by a web frontend.
      *
-     * @param string $package Package name eg: PEAR2_SimpleChannelServer
+     * @param string $package Package name eg: Pyrus_SimpleChannelServer
      *
      * @return array
      */

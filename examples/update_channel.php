@@ -5,9 +5,9 @@ ini_set('display_errors',true);
 require __DIR__ . '/../../../autoload.php';
 
 /*
-$channel = new PEAR2_SimpleChannelServer('pear2.php.net','/Library/WebServer/Documents/pearserver', null, '/Users/bbieber/pyrus', array('saltybeagle','cellog'));
+$channel = new Pyrus_SimpleChannelServer('pear2.php.net','/Library/WebServer/Documents/pearserver', null, '/Users/bbieber/pyrus', array('saltybeagle','cellog'));
 if (!@unserialize(file_get_contents('/tmp/categories.inf'))) {
-      $cat = PEAR2_SimpleChannelServer_Categories::create('Name1',
+      $cat = Pyrus_SimpleChannelServer_Categories::create('Name1',
           'Description 1', 'Alias1')->
           create('Name2', 'Description 2')->
           create('Name3', 'Description 3', 'Alias3')->
@@ -15,7 +15,7 @@ if (!@unserialize(file_get_contents('/tmp/categories.inf'))) {
       file_put_contents('/tmp/categories.inf', serialize($cat));
 }
 
-$categories = PEAR2_SimpleChannelServer_Categories::getCategories();
+$categories = Pyrus_SimpleChannelServer_Categories::getCategories();
 $categories = $channel->listCategories();
 foreach($categories as $category) {
     var_dump($category);
