@@ -1,1 +1,2 @@
  - Using \Pyrus instead of \PEAR2\Pyrus namespace as per the latest Pyrus
+ - Move the channel server itself to the Pyrus namespace

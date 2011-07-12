@@ -6,13 +6,13 @@
  * retain the list of packages in the channel
  *
  * @category Developer
- * @package  PEAR2_SimpleChannelServer
+ * @package  Pyrus_SimpleChannelServer
  * @author   Greg Beaver <cellog@php.net>
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
+ * @link     https://github.com/pyrus/Pyrus_SimpleChannelServer
  */
-namespace PEAR2\SimpleChannelServer\REST;
-use PEAR2\SimpleChannelServer\Categories;
+namespace Pyrus\SimpleChannelServer\REST;
+use Pyrus\SimpleChannelServer\Categories;
 class Package extends Manager
 {
     private $_packages = array();
