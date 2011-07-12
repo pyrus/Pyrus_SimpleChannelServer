@@ -3,13 +3,13 @@
  * Base class for managing a REST based PEAR compatible channel server.
  *
  * @category Developer
- * @package  PEAR2_SimpleChannelServer
+ * @package  Pyrus_SimpleChannelServer
  * @author   Greg Beaver <cellog@php.net>
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
+ * @link     https://github.com/pyrus/Pyrus_SimpleChannelServer
  */
-namespace PEAR2\SimpleChannelServer\REST;
-use PEAR2\SimpleChannelServer\Exception;
+namespace Pyrus\SimpleChannelServer\REST;
+use Pyrus\SimpleChannelServer\Exception;
 class Manager
 {
     /**
@@ -64,7 +64,7 @@ class Manager
                 $this->chan . ' channel, and package is in ' .
                 $new->channel . ' channel');
         }
-        $categories = new \PEAR2\SimpleChannelServer\Categories($this->channel);
+        $categories = new \Pyrus\SimpleChannelServer\Categories($this->channel);
         $category = new Category($this->rest, $this->channel,
             $this->uri, $categories);
         $package = new Package($this->rest, $this->channel,

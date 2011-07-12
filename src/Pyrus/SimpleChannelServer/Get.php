@@ -1,5 +1,5 @@
 <?php
-namespace PEAR2\SimpleChannelServer;
+namespace Pyrus\SimpleChannelServer;
 class Get
 {
     protected $get;

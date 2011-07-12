@@ -3,12 +3,12 @@
  * Class for a filesystem only PEAR compatible channel server.
  *
  * @category Developer
- * @package  PEAR2_SimpleChannelServer
+ * @package  Pyrus_SimpleChannelServer
  * @author   Greg Beaver <cellog@php.net>
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
+ * @link     https://github.com/pyrus/Pyrus_SimpleChannelServer
  */
-namespace PEAR2\SimpleChannelServer;
+namespace Pyrus\SimpleChannelServer;
 class Main
 {
     /**
@@ -19,7 +19,7 @@ class Main
      * @var string
      */
     protected $webpath;
-    
+
     /**
      * Path to rest files
      * @var string
@@ -32,21 +32,21 @@ class Main
     /**
      * REST manager
      *
-     * @var PEAR2\SimpleChannelServer\REST\Manager
+     * @var Pyrus\SimpleChannelServer\REST\Manager
      */
     protected $rest;
 
     /**
      * GET manager
      *
-     * @var PEAR2\SimpleChannelServer\Get
+     * @var Pyrus\SimpleChannelServer\Get
      */
     protected $get;
 
     /**
      * Construct simple channel server
      *
-     * @param PEAR2\SimpleChannelServer\Channel $channel   channel object
+     * @param Pyrus\SimpleChannelServer\Channel $channel   channel object
      * @param string $webpath   full path to web files eg: /var/www/pear/
      * @param string $pyruspath Path to the pyrus controlled PEAR installation
      */
@@ -86,7 +86,7 @@ class Main
                 $e);
         }
     }
-    
+
     function categorize($package, $category)
     {
         $categories = new Categories($this->channel);
@@ -235,7 +235,7 @@ class Main
      * List release info with dependencies formatted for easy processing
      * by a web frontend.
      *
-     * @param string $package Package name eg: PEAR2_SimpleChannelServer
+     * @param string $package Package name eg: Pyrus_SimpleChannelServer
      *
      * @return array
      */

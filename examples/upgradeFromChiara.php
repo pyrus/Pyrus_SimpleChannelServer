@@ -1,7 +1,7 @@
 <?php
 /**
  * This example shows how to upgrade a pear channel running Chiara_PEAR_Server
- * to PEAR2_SimpleChannelServer.
+ * to Pyrus_SimpleChannelServer.
  * 
  * All release dates are taken from the package.xml, so we can easily re-create
  * the channel.
@@ -15,8 +15,8 @@
 require_once '/Users/bbieber/pyrus/src/PEAR2/Autoload.php';
 
 // Here we re-create the channel.xml
-$channel = new PEAR2_SimpleChannelServer_Channel('pear.saltybeagle.com','Brett Bieber\'s PEAR Channel','salty','Chiara_PEAR_Server_REST/');
-$scs = new PEAR2_SimpleChannelServer($channel, dirname(__FILE__).'/pearchannel');
+$channel = new Pyrus_SimpleChannelServer_Channel('pear.saltybeagle.com','Brett Bieber\'s PEAR Channel','salty','Chiara_PEAR_Server_REST/');
+$scs = new Pyrus_SimpleChannelServer($channel, dirname(__FILE__).'/pearchannel');
 $scs->saveChannel();
 
 // Path to the get directory.

@@ -13,17 +13,17 @@
  *          create('Name4', 'Description 4');
  *      file_put_contents('/path/to/serialize/categories.inf', serialize($cat));
  * }
- * $categories = PEAR2\SimpleChannelServer\Categories::getCategories();
+ * $categories = Pyrus\SimpleChannelServer\Categories::getCategories();
  * $categories->link('SimpleChannelServer', 'Developer');
  * </code>
  *
  * @category Developer
- * @package  PEAR2_SimpleChannelServer
+ * @package  Pyrus_SimpleChannelServer
  * @author   Greg Beaver <cellog@php.net>
  * @license  http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @link     http://svn.php.net/viewvc/pear2/sandbox/SimpleChannelServer/
+ * @link     https://github.com/pyrus/Pyrus_SimpleChannelServer
  */
-namespace PEAR2\SimpleChannelServer;
+namespace Pyrus\SimpleChannelServer;
 class Categories
 {
     /**
@@ -83,7 +83,7 @@ class Categories
      * @param string $description Description of the category
      * @param string $alias       Alias of the category
      * 
-     * @return PEAR2\SimpleChannelServer\Categories
+     * @return Pyrus\SimpleChannelServer\Categories
      */
     public function create($name, $description, $alias = null)
     {
