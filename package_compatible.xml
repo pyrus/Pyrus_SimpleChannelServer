@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package version="2.1" xmlns="http://pear.php.net/dtd/package-2.1" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.1     http://pear.php.net/dtd/package-2.1.xsd">
  <name>Pyrus_SimpleChannelServer</name>
- <channel>pear2.php.net</channel>
+ <channel>pyrus.net</channel>
  <summary>A simple channel server for PEAR compatible channels
 </summary>
  <description>
@@ -27,8 +27,8 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2011-07-11</date>
- <time>19:04:51</time>
+ <date>2011-09-14</date>
+ <time>13:40:58</time>
  <version>
   <release>0.3.0</release>
   <api>0.1.0</api>
@@ -38,25 +38,26 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
   <api>alpha</api>
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">New BSD License</license>
- <notes/>
+ <notes> - Using \Pyrus instead of \PEAR2\Pyrus namespace as per the latest Pyrus
+ - Move the channel server itself to the Pyrus namespace</notes>
  <contents>
   <dir name="/">
    <file role="script" name="script/pearscs"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/REST/Release.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/REST/Package.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/REST/Manager.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/REST/Maintainer.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/REST/Category.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/Main.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/Get.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/Exception.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/CLI.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/Channel.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/Categories/Exception.php"/>
-   <file role="php" name="php/PEAR2/SimpleChannelServer/Categories.php"/>
-   <file role="doc" name="doc/pear2.php.net/Pyrus_SimpleChannelServer/examples/examples/upgradeFromChiara.php"/>
-   <file role="doc" name="doc/pear2.php.net/Pyrus_SimpleChannelServer/examples/examples/update_channel.php"/>
-   <file role="data" name="customcommand/pear2.php.net/Pyrus_SimpleChannelServer/commands.xml"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/REST/Release.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/REST/Package.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/REST/Manager.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/REST/Maintainer.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/REST/Category.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/Main.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/Get.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/Exception.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/CLI.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/Channel.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/Categories/Exception.php"/>
+   <file role="php" name="php/Pyrus/SimpleChannelServer/Categories.php"/>
+   <file role="doc" name="doc/pyrus.net/Pyrus_SimpleChannelServer/examples/examples/upgradeFromChiara.php"/>
+   <file role="doc" name="doc/pyrus.net/Pyrus_SimpleChannelServer/examples/examples/update_channel.php"/>
+   <file role="data" name="customcommand/pyrus.net/Pyrus_SimpleChannelServer/commands.xml"/>
   </dir>
  </contents>
  <dependencies>
@@ -80,21 +81,21 @@ More information here: http://pear.php.net/manual/en/channels.scs.php
  </dependencies>
  <phprelease>
   <filelist>
-   <install name="customcommand/pear2.php.net/Pyrus_SimpleChannelServer/commands.xml" as="Pyrus_SimpleChannelServer/commands.xml"/>
-   <install name="doc/pear2.php.net/Pyrus_SimpleChannelServer/examples/examples/update_channel.php" as="Pyrus_SimpleChannelServer/examples/examples/update_channel.php"/>
-   <install name="doc/pear2.php.net/Pyrus_SimpleChannelServer/examples/examples/upgradeFromChiara.php" as="Pyrus_SimpleChannelServer/examples/examples/upgradeFromChiara.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/Categories.php" as="PEAR2/SimpleChannelServer/Categories.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/Categories/Exception.php" as="PEAR2/SimpleChannelServer/Categories/Exception.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/Channel.php" as="PEAR2/SimpleChannelServer/Channel.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/CLI.php" as="PEAR2/SimpleChannelServer/CLI.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/Exception.php" as="PEAR2/SimpleChannelServer/Exception.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/Get.php" as="PEAR2/SimpleChannelServer/Get.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/Main.php" as="PEAR2/SimpleChannelServer/Main.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/REST/Category.php" as="PEAR2/SimpleChannelServer/REST/Category.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/REST/Maintainer.php" as="PEAR2/SimpleChannelServer/REST/Maintainer.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/REST/Manager.php" as="PEAR2/SimpleChannelServer/REST/Manager.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/REST/Package.php" as="PEAR2/SimpleChannelServer/REST/Package.php"/>
-   <install name="php/PEAR2/SimpleChannelServer/REST/Release.php" as="PEAR2/SimpleChannelServer/REST/Release.php"/>
+   <install name="customcommand/pyrus.net/Pyrus_SimpleChannelServer/commands.xml" as="Pyrus_SimpleChannelServer/commands.xml"/>
+   <install name="doc/pyrus.net/Pyrus_SimpleChannelServer/examples/examples/update_channel.php" as="Pyrus_SimpleChannelServer/examples/examples/update_channel.php"/>
+   <install name="doc/pyrus.net/Pyrus_SimpleChannelServer/examples/examples/upgradeFromChiara.php" as="Pyrus_SimpleChannelServer/examples/examples/upgradeFromChiara.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/Categories.php" as="Pyrus/SimpleChannelServer/Categories.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/Categories/Exception.php" as="Pyrus/SimpleChannelServer/Categories/Exception.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/Channel.php" as="Pyrus/SimpleChannelServer/Channel.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/CLI.php" as="Pyrus/SimpleChannelServer/CLI.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/Exception.php" as="Pyrus/SimpleChannelServer/Exception.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/Get.php" as="Pyrus/SimpleChannelServer/Get.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/Main.php" as="Pyrus/SimpleChannelServer/Main.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/REST/Category.php" as="Pyrus/SimpleChannelServer/REST/Category.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/REST/Maintainer.php" as="Pyrus/SimpleChannelServer/REST/Maintainer.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/REST/Manager.php" as="Pyrus/SimpleChannelServer/REST/Manager.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/REST/Package.php" as="Pyrus/SimpleChannelServer/REST/Package.php"/>
+   <install name="php/Pyrus/SimpleChannelServer/REST/Release.php" as="Pyrus/SimpleChannelServer/REST/Release.php"/>
    <install name="script/pearscs" as="pearscs"/>
   </filelist>
  </phprelease>
