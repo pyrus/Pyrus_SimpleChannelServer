@@ -64,7 +64,7 @@ class Main
         }
         $rest = $channel->protocols->rest;
         foreach ($rest as $restpath) {
-            if (preg_match('/https?:\/\/'.$channel->name.'\//', $restpath, $matches)) {
+            if (preg_match('/https?:\/\/'.preg_quote($channel->name, '/').'\//', $restpath, $matches)) {
                 $this->uri = $matches[0];
                 $restpath  = str_replace($matches[0], '', $restpath);
                 break;
